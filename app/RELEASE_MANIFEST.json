@@ -1,0 +1,23 @@
+{
+  "status": "development_workspace",
+  "version": "0.2.0",
+  "date": "2026-10-16",
+  "archive_created": false,
+  "archive_generation": "only_on_explicit_user_download_request",
+  "previous_archives": "deleted_at_user_request",
+  "immutable_release_manifest": false,
+  "mode": "local_rules_no_external_ai",
+  "current_features": [
+    "raw_intake",
+    "automatic_public_collectors",
+    "bounded_galaxy_motion",
+    "local_excel_assistant",
+    "general_intake_breakdown",
+    "business_dataset_and_column_classification",
+    "version_bound_explicit_metadata_review"
+  ],
+  "validation_reference": "docs/INTAKE_BREAKDOWN.md",
+  "native_windows_execution_tested": false,
+  "postgresql_retested_for_excel_assistant": false,
+  "postgresql_retested_for_intake_breakdown": false
+}

@@ -1,0 +1,45 @@
+# Single-node deployment foundation, NOT an HA/production-security certification.
+# First: python scripts/generate_env.py
+services:
+  postgres:
+    image: postgres:17-bookworm
+    environment:
+      POSTGRES_DB: rubber
+      POSTGRES_USER: rubber
+      POSTGRES_PASSWORD: ${RUBBER_DB_PASSWORD:?Generate .env with scripts/generate_env.py first}
+      POSTGRES_INITDB_ARGS: --encoding=UTF8
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: [CMD-SHELL, pg_isready -U rubber -d rubber]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
+    # Deliberately no public database port.
+  app:
+    build: .
+    env_file: .env
+    environment:
+      RUBBER_DATABASE_URL: postgresql://rubber:${RUBBER_DB_PASSWORD}@postgres:5432/rubber
+      RUBBER_DATA_DIR: /data
+      RUBBER_COLLECTORS_ENABLED: ${RUBBER_COLLECTORS_ENABLED:-1}
+      RUBBER_S3_BUCKET: ${RUBBER_S3_BUCKET:-}
+      RUBBER_S3_ENDPOINT: ${RUBBER_S3_ENDPOINT:-}
+      RUBBER_S3_PREFIX: ${RUBBER_S3_PREFIX:-rubber-raw}
+      AWS_DEFAULT_REGION: ${AWS_DEFAULT_REGION:-us-east-1}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID:-}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY:-}
+    volumes:
+      - app-data:/data
+    ports:
+      - ${PORT:-8000}:8000
+    depends_on:
+      postgres:
+        condition: service_healthy
+    mem_limit: 1g
+    init: true
+    restart: unless-stopped
+volumes:
+  postgres-data:
+  app-data:

@@ -1,0 +1,217 @@
+{
+  "verified_at": "2026-10-15T13:14:40.939025+00:00",
+  "verification_kind": "actual public HTTP acquisitions; not deterministic fixture counts",
+  "health": {
+    "status": "ok",
+    "mode": "single-node",
+    "storage": "sqlite+filesystem",
+    "external_collectors_active": 4,
+    "external_collectors_successful": 4,
+    "external_collectors_failed": 0,
+    "collector_worker_running": true,
+    "version": "0.2.0"
+  },
+  "sources": [
+    {
+      "adapter": "faostat_bulk",
+      "name": "FAOSTAT · Produksi karet",
+      "record_count_retained": 1256,
+      "last_success_at": "2026-10-15T13:09:19.417522+00:00",
+      "last_status": "succeeded",
+      "default_interval_seconds": 604800,
+      "latest_run": {
+        "trigger_kind": "manual",
+        "created_at": "2026-10-15T13:08:55.986371+00:00",
+        "started_at": "2026-10-15T13:08:57.076346+00:00",
+        "finished_at": "2026-10-15T13:09:19.417522+00:00",
+        "status": "succeeded",
+        "records": 1256,
+        "new_records": 0,
+        "revised_records": 1256,
+        "unchanged_records": 0,
+        "rejected_records": 0,
+        "coverage": {
+          "scope": "Produksi karet alam tahunan sejak 2000; wilayah dan flag sebagaimana FAOSTAT.",
+          "complete_within_scope": true,
+          "bulk_rows_scanned": 4209110,
+          "source_missing_values": 131,
+          "raw_contains_other_commodities": true,
+          "note": "Bulk raw mengandung komoditas lain; hanya produksi karet alam dinormalisasi.",
+          "dataset_updated_at": "2025-12-31T00:00:00",
+          "source_rows_declared": "4209110"
+        }
+      },
+      "raw_artifacts": [
+        {
+          "resource_key": "catalog",
+          "url": "https://bulks-faostat.fao.org/production/datasets_E.xml",
+          "http_status": 304,
+          "requested_at": "2026-10-15T13:08:57.081575+00:00",
+          "sha256": "678482ecb0a48f4826a8dcdf077b57bbd1c16d70cca3eec77c688515936292ec",
+          "size_bytes": 116384
+        },
+        {
+          "resource_key": "qcl-bulk",
+          "url": "https://bulks-faostat.fao.org/production/Production_Crops_Livestock_E_All_Data_(Normalized).zip",
+          "http_status": 304,
+          "requested_at": "2026-10-15T13:08:57.369699+00:00",
+          "sha256": "c5835418c18f9322e7decbd6800f93a216eaae3cdfa31acb08f0518c0c6d6853",
+          "size_bytes": 33921825
+        }
+      ],
+      "revision_note": "Latest revisions add source flag descriptions/update/citation metadata; not evidence that all production values changed."
+    },
+    {
+      "adapter": "worldbank",
+      "name": "World Bank · Pink Sheet",
+      "record_count_retained": 1134,
+      "last_success_at": "2026-10-15T13:09:20.332343+00:00",
+      "last_status": "succeeded",
+      "default_interval_seconds": 86400,
+      "latest_run": {
+        "trigger_kind": "manual",
+        "created_at": "2026-10-15T13:08:55.991122+00:00",
+        "started_at": "2026-10-15T13:09:19.534367+00:00",
+        "finished_at": "2026-10-15T13:09:20.332343+00:00",
+        "status": "succeeded",
+        "records": 1134,
+        "new_records": 0,
+        "revised_records": 0,
+        "unchanged_records": 1134,
+        "rejected_records": 0,
+        "coverage": {
+          "scope": "RSS3 dan TSR20; benchmark bulanan USD/kg; seluruh periode yang tersedia.",
+          "complete_within_scope": true,
+          "discovery_url": "https://www.worldbank.org/en/research/commodity-markets",
+          "source_missing_values": 468,
+          "series_periods": {
+            "RSS3": {
+              "first": "1960-01",
+              "last": "2026-09",
+              "records": 801
+            },
+            "TSR20": {
+              "first": "1999-01",
+              "last": "2026-09",
+              "records": 333
+            }
+          }
+        }
+      },
+      "raw_artifacts": [
+        {
+          "resource_key": "catalog",
+          "url": "https://www.worldbank.org/en/research/commodity-markets",
+          "http_status": 304,
+          "requested_at": "2026-10-15T13:09:19.536663+00:00",
+          "sha256": "0ce984b22e4ab69f299df47450c1fc314bdbb5dcb6fec8cd80b5168a511db933",
+          "size_bytes": 55918
+        },
+        {
+          "resource_key": "monthly-prices",
+          "url": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx",
+          "http_status": 304,
+          "requested_at": "2026-10-15T13:09:19.805111+00:00",
+          "sha256": "ea1c350827878ea3bbe30e3cda16a13fd3bd5b409b8458940dc94a36b5a33154",
+          "size_bytes": 586099
+        }
+      ]
+    },
+    {
+      "adapter": "news_rss",
+      "name": "Google News RSS · Rantai pasok",
+      "record_count_retained": 14,
+      "last_success_at": "2026-10-15T13:14:08.817807+00:00",
+      "last_status": "partial",
+      "default_interval_seconds": 3600,
+      "latest_run": {
+        "trigger_kind": "scheduled",
+        "created_at": "2026-10-15T13:14:08.403729+00:00",
+        "started_at": "2026-10-15T13:14:08.407377+00:00",
+        "finished_at": "2026-10-15T13:14:08.817807+00:00",
+        "status": "partial",
+        "records": 13,
+        "new_records": 0,
+        "revised_records": 0,
+        "unchanged_records": 13,
+        "rejected_records": 0,
+        "coverage": {
+          "scope": "Metadata RSS untuk query karet alam, jendela permintaan 7 hari; bukan seluruh berita dunia.",
+          "query": "(\"natural rubber\" OR \"karet alam\" OR bokar) (supply OR exports OR production OR shipping OR floods) when:7d",
+          "complete_within_scope": false,
+          "feed_items": 13,
+          "limited_feed": true,
+          "full_articles_collected": false,
+          "feed_built_at": "Thu, 15 Oct 2026 13:14:08 GMT"
+        }
+      },
+      "raw_artifacts": [
+        {
+          "resource_key": "news-feed",
+          "url": "https://news.google.com/rss/search?q=%28%22natural+rubber%22+OR+%22karet+alam%22+OR+bokar%29+%28supply+OR+exports+OR+production+OR+shipping+OR+floods%29+when%3A7d&hl=en-US&gl=US&ceid=US%3Aen",
+          "http_status": 200,
+          "requested_at": "2026-10-15T13:14:08.412934+00:00",
+          "sha256": "8280688b5c63062b813ebc640989ec7ce1860c8cbdd2ab46e35347968bd64cac",
+          "size_bytes": 19225
+        }
+      ]
+    },
+    {
+      "adapter": "bmkg",
+      "name": "BMKG · Prakiraan cuaca",
+      "record_count_retained": 36,
+      "last_success_at": "2026-10-15T13:09:20.702024+00:00",
+      "last_status": "succeeded",
+      "default_interval_seconds": 21600,
+      "latest_run": {
+        "trigger_kind": "manual",
+        "created_at": "2026-10-15T13:08:55.995165+00:00",
+        "started_at": "2026-10-15T13:09:20.379216+00:00",
+        "finished_at": "2026-10-15T13:09:20.702024+00:00",
+        "status": "succeeded",
+        "records": 18,
+        "new_records": 18,
+        "revised_records": 0,
+        "unchanged_records": 0,
+        "rejected_records": 0,
+        "coverage": {
+          "scope": "Satu kode adm4: 12.71.01.1001",
+          "complete_within_scope": true,
+          "location": {
+            "adm1": "12",
+            "adm2": "12.71",
+            "adm3": "12.71.01",
+            "adm4": "12.71.01.1001",
+            "provinsi": "Sumatera Utara",
+            "kotkab": "Kota Medan",
+            "kecamatan": "Medan Kota",
+            "desa": "Pasar Baru",
+            "lon": 98.6847407431,
+            "lat": 3.583985458,
+            "timezone": "Asia/Jakarta"
+          },
+          "context": "Pasar Baru, Medan Kota — lokasi referensi regional, belum dipetakan ke kebun/pemasok.",
+          "forecast_not_observation": true,
+          "intervals_received": 18,
+          "valid_first": "2026-10-15T13:00:00+00:00",
+          "valid_last": "2026-10-17T16:00:00+00:00",
+          "horizon_note": "Cakupan mengikuti interval yang dikembalikan API; tidak menjamin 72 jam penuh.",
+          "plantation_link_verified": false,
+          "attribution": "BMKG — Badan Meteorologi, Klimatologi, dan Geofisika."
+        }
+      },
+      "raw_artifacts": [
+        {
+          "resource_key": "forecast:12.71.01.1001",
+          "url": "https://api.bmkg.go.id/publik/prakiraan-cuaca?adm4=12.71.01.1001",
+          "http_status": 200,
+          "requested_at": "2026-10-15T13:09:20.383789+00:00",
+          "sha256": "d964c06297efef1947f43eb6f2a67e6539439b649d0b2fb6c38a2ead576078c3",
+          "size_bytes": 8014
+        }
+      ],
+      "retention_note": "36 distinct valid-time keys retained across two successful 18-interval snapshots; this is not a claim of 36 current intervals or 72-hour coverage."
+    }
+  ],
+  "total_records_retained": 2440
+}

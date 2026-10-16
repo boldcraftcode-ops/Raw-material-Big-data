@@ -1,0 +1,29 @@
+{
+  "checked_at": "2026-10-16T02:11:53.674027+00:00",
+  "environment": "Chromium / Linux",
+  "synthetic_data_only": true,
+  "external_ai_used": false,
+  "checks": [
+    "General intake/classification is the default, purchase mapping remains optional",
+    "Multi-sheet workbook is broken down into separately classified inventory and production tables",
+    "Column primitive types, semantic roles and blank counts are shown without guessing unknown roles",
+    "Reasons and previews retain physical sheet, header, row and column references; zero is not blank",
+    "Intake does not force purchase mapping or publish observations",
+    "Breakdown modal fits 390/768/1440px; wide column tables scroll locally",
+    "Editing a suggestion clears confirmation; review cannot be submitted silently",
+    "Review persists separately from unchanged inferred metadata, with no observation publication",
+    "Review applies only to the chosen table, not automatically to all workbook sheets",
+    "Original bytes remain identical and another workspace cannot access the profile",
+    "Pusat data opens saved breakdown/review in the raw evidence drawer, including mobile layout",
+    "Unknown business datasets abstain explicitly instead of becoming purchase transactions",
+    "Unsupported format remains byte-identical raw and is not falsely claimed as classified",
+    "Over-budget CSV reports partial observed counts while retaining all original bytes",
+    "Identical re-intake records another receipt without erasing review or duplicating the raw version",
+    "Browser requests remain same-origin; no AI/CDN/model endpoint is used",
+    "Zero JavaScript page errors"
+  ],
+  "page_errors": [],
+  "cleanup": true,
+  "status": "passed",
+  "passed_checks": 17
+}

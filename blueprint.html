@@ -1,0 +1,744 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Blueprint teknis Rubber Intelligence Platform: arsitektur, sumber data, model pengetahuan, galaksi, keamanan dan roadmap untuk karet alam.">
+<title>Rubber Intelligence Platform — Blueprint v1.0</title>
+<style>
+:root {--ink:#182b42;--muted:#5a6d82;--line:#dfe6ed;--teal:#0c7f70;--bg:#f6f8fb;--paper:#fff;--dark:#101c30;--accent:#73e4c3;}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:30px}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;font-size:16px;line-height:1.75;-webkit-font-smoothing:antialiased}a{color:#116f91;text-underline-offset:3px}a:focus-visible{outline:3px solid #f1bd59;outline-offset:4px}::selection{background:#b7f1dd;color:#122940}.topbar{background:var(--dark);color:#c1cde1;border-bottom:1px solid #ffffff14}.topbar-inner{max-width:1450px;margin:auto;padding:17px 48px;display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:11px;font-weight:650;letter-spacing:1.6px}.brand{display:flex;align-items:center;gap:12px}.brand svg{width:25px;height:25px}.status{display:flex;align-items:center;gap:8px;color:#a8bbd4;letter-spacing:.7px}.status i{height:6px;width:6px;border-radius:50%;background:#f6c777;display:inline-block}.hero{background:var(--dark);color:#fff;overflow:hidden;position:relative}.hero-inner{max-width:1450px;padding:62px 48px 44px;margin:auto;position:relative;display:grid;grid-template-columns:1fr 1.04fr;gap:24px;align-items:center}.eyebrow{font-size:11px;font-weight:650;letter-spacing:2.1px;color:var(--accent);margin-bottom:23px}.hero h1{font-size:clamp(39px,4.2vw,61px);line-height:1.07;letter-spacing:-2.3px;font-weight:650;margin:0 0 24px;max-width:650px}.hero h1 em{font-style:normal;color:#b0b7ef}.hero .subtitle{max-width:510px;font-size:17px;line-height:1.75;color:#b8c8df;margin:0 0 29px}.pills{display:flex;flex-wrap:wrap;gap:8px}.pill{border:1px solid #52617a8c;border-radius:30px;color:#d2deef;padding:5px 11px;font-size:11px;letter-spacing:.2px}.hero-art svg{width:100%;height:auto;display:block}.hero-foot{max-width:1354px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:16px;color:#9dafc9;padding:20px 0 25px;border-top:1px solid #ffffff1c;font-size:11px;letter-spacing:.6px}.hero-foot strong{color:#d7e1f0;font-weight:550}.decision-band{background:#eaf4f1;border-bottom:1px solid #dce9e3}.decision-inner{max-width:1354px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);padding:23px 0;gap:32px}.decision{border-left:2px solid #1d9682;padding-left:16px}.decision b{display:block;font-size:14px;color:#174d45;font-weight:650}.decision span{display:block;color:#5f766f;font-size:12px;margin-top:3px}.report-shell{max-width:1450px;margin:0 auto;padding:48px;display:grid;grid-template-columns:238px minmax(0,1fr);gap:50px;align-items:start}.sidebar{position:sticky;top:28px;max-height:calc(100vh - 56px);overflow-y:auto;padding-right:10px;scrollbar-width:thin}.sidebar-title{font-size:10px;font-weight:750;letter-spacing:2px;color:#7b8da1;padding:0 0 13px 11px}.sidebar a{display:flex;gap:9px;text-decoration:none;font-size:12px;line-height:1.45;color:#5e728a;padding:8px 10px;border-radius:7px;border:1px solid transparent;margin-bottom:2px}.sidebar a span{font-family:ui-monospace,monospace;font-size:10px;color:#98a8b8;flex:0 0 20px;padding-top:1px}.sidebar a:hover{background:#e7efed;color:#0d7164;border-color:#d9e7e1}.sidebar-note{font-size:11px;color:#8090a3;margin:22px 11px 0;line-height:1.75;border-top:1px solid #dfe6ed;padding-top:16px}.article{min-width:0;background:var(--paper);padding:38px 42px;border:1px solid #e2e8ee;border-radius:14px;box-shadow:0 8px 28px #20355004}.intro{padding-bottom:9px}.intro>p:first-child{font-size:12px;line-height:1.85;color:#6f8092}.intro>p:nth-child(2){font-size:12px;color:#6f8092}.article p{margin:0 0 18px}.article strong{font-weight:650;color:#213c52}.article blockquote{margin:25px 0;padding:19px 23px;background:#eef7f4;border-left:3px solid #1a9b80;border-radius:0 9px 9px 0;color:#375e56;font-size:15px}.article blockquote p:last-child{margin-bottom:0}.doc-section{border-top:1px solid var(--line);margin-top:36px;padding-top:35px;scroll-margin-top:24px}.doc-section h2{font-size:25px;line-height:1.3;letter-spacing:-.65px;font-weight:650;margin:0 0 24px;color:#152c42;display:flex;align-items:baseline;gap:14px}.section-no{font-size:13px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-weight:500;color:#0b8b76;letter-spacing:0;min-width:25px}.article h3{font-size:17px;font-weight:650;letter-spacing:-.25px;line-height:1.45;color:#25465b;margin:27px 0 12px}.article ol,.article ul{padding-left:23px;margin:0 0 22px}.article li{padding-left:3px;margin:7px 0}.article li::marker{color:#52877e}.article code{font-family:ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace;font-size:.82em;line-height:1.55;background:#eef2f6;color:#38546b;padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}.article pre{border:1px solid #dce5ee;border-radius:9px;padding:20px;overflow:auto;background:#f5f8fb;font-size:13px;line-height:1.7;margin:20px 0 25px}.article pre code{font-size:12px;background:none;padding:0;border-radius:0;white-space:pre;overflow-wrap:normal;color:#344f67}.table-wrap{overflow-x:auto;margin:19px 0 24px;border:1px solid #dfe7ef;border-radius:9px;scrollbar-width:thin}.table-wrap:focus-visible{outline:3px solid #72bdb0;outline-offset:3px}.article table{border-collapse:collapse;width:100%;min-width:540px;font-size:13px;line-height:1.65}.article th{padding:13px 15px;background:#eef3f7;color:#3a526a;text-align:left;font-weight:650;border-bottom:1px solid #dce5ec;vertical-align:top}.article th:first-child{width:25%}.article td{padding:13px 15px;vertical-align:top;border-bottom:1px solid #e6ecf1;overflow-wrap:anywhere;color:#4d6277}.article tr:last-child td{border-bottom:0}.article tbody tr:nth-child(even) td{background:#fafbfd}.article td code{font-size:11px}.article .citation{font-size:10px;white-space:nowrap;vertical-align:super;text-decoration:none;color:#138d78;margin-left:2px;font-weight:700}.article .citation:hover{text-decoration:underline}.diagram{margin:24px 0;border:1px solid #e2e8ef;border-radius:12px;overflow:hidden;background:#f4f7fb}.diagram-scroll{overflow-x:auto;scrollbar-width:thin}.diagram svg{display:block;width:100%;height:auto;min-width:680px}.diagram figcaption{font-size:11px;line-height:1.65;color:#697d91;padding:12px 16px;background:#f8fafc;border-top:1px solid #e2e8ef}.galaxy{background:#101b2e}.galaxy figcaption{background:#17263c;color:#a8bbd3;border-color:#2e4058}.architecture+pre{display:none}.article hr{border:0;border-top:1px solid var(--line);margin:27px 0}.footer{background:#eaf0f4;border-top:1px solid #dce4ec;color:#718499;font-size:11px}.footer>div{max-width:1450px;margin:auto;padding:23px 48px;display:flex;justify-content:space-between;gap:20px}.back-top{display:inline-block;margin-top:18px;color:#18816d;text-decoration:none;font-size:11px}.mobile-contents{display:none}.end-note{font-size:12px;color:#61758a;margin-top:28px;line-height:1.8}
+@media(min-width:1450px){.hero-foot,.decision-inner{margin-left:auto;margin-right:auto}}
+@media(max-width:1449px){.hero-foot,.decision-inner{margin-left:48px;margin-right:48px}}
+@media(max-width:1170px){.report-shell{grid-template-columns:205px minmax(0,1fr);gap:25px;padding:34px 30px}.article{padding:30px}.sidebar a{font-size:11px}.hero-inner{padding:46px 32px 30px;grid-template-columns:1fr .95fr}.hero h1{font-size:44px}.hero-foot,.decision-inner{margin-left:32px;margin-right:32px}.topbar-inner{padding-left:32px;padding-right:32px}}
+@media(max-width:950px){.sidebar{display:none}.report-shell{display:block;max-width:900px;padding:25px 22px}.article{padding:30px}.hero-inner{grid-template-columns:1fr .8fr;gap:0}.hero h1{font-size:39px;letter-spacing:-1.6px}.hero .subtitle{font-size:15px}.hero-art{margin-right:-70px}.hero-foot{font-size:10px}.decision-inner{gap:16px}.decision b{font-size:12px}.decision span{font-size:11px}.mobile-contents{display:block;margin:0 0 20px;padding:13px 18px;background:white;border:1px solid #e2e8ee;border-radius:9px;font-size:12px;color:#425e72}.mobile-contents summary{cursor:pointer;color:#0f7c6b;font-weight:650}.mobile-contents nav{display:grid;grid-template-columns:1fr 1fr;gap:5px 15px;margin-top:16px}.mobile-contents a{text-decoration:none;font-size:11px;color:#5c7388}.mobile-contents span{font-family:monospace;color:#93a4b6;margin-right:7px}}
+@media(max-width:640px){body{font-size:14px;line-height:1.8}.topbar-inner{padding:14px 20px;font-size:9px;letter-spacing:1px}.status{font-size:9px;letter-spacing:.1px}.brand{gap:8px}.brand svg{width:21px;height:21px}.hero-inner{display:block;padding:34px 22px 12px}.eyebrow{font-size:9px;margin-bottom:18px}.hero h1{font-size:39px;max-width:420px;letter-spacing:-1.8px;margin-bottom:18px}.hero .subtitle{font-size:14px;max-width:430px;margin-bottom:21px}.pill{font-size:10px;padding:3px 9px}.hero-art{margin:5px -22px -5px}.hero-art svg{max-height:245px}.hero-foot{margin:0 22px;padding:16px 0;display:block;line-height:1.9;font-size:10px}.hero-foot>span{display:block}.decision-inner{margin:0 22px;padding:19px 0;grid-template-columns:1fr;gap:13px}.decision{padding-left:12px}.decision b{font-size:12px}.decision span{display:inline;font-size:11px}.report-shell{padding:18px 12px}.article{padding:25px 18px;border-radius:10px}.doc-section{margin-top:27px;padding-top:28px}.doc-section h2{font-size:21px;gap:10px;letter-spacing:-.4px}.section-no{font-size:11px;min-width:21px}.article h3{font-size:16px}.article blockquote{padding:15px 16px;font-size:13px}.article pre{margin-left:-4px;margin-right:-4px;padding:14px;font-size:11px}.article pre code{font-size:10px}.article table{font-size:12px;min-width:580px}.article th,.article td{padding:11px 13px}.intro>p:first-child,.intro>p:nth-child(2){font-size:11px}.footer>div{padding:20px 22px;display:block;line-height:1.9}.footer span{display:block}.diagram svg{min-width:720px}.diagram figcaption{font-size:10px}.mobile-contents nav{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{@page{size:A4;margin:17mm 15mm}body{background:white;font-size:10px;line-height:1.55;color:#172b40}.topbar{background:white;color:#263d53;border-color:#dce5ec}.topbar-inner{padding:5px 0;font-size:8px}.topbar .status{color:#7e6b40}.brand svg{display:none}.hero{background:#101c30!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}.hero-inner{padding:24px;grid-template-columns:1.1fr .9fr}.hero h1{font-size:32px}.hero .subtitle{font-size:11px}.hero .eyebrow{font-size:8px;margin-bottom:15px}.hero-foot{margin:0 24px;padding:12px 0;font-size:8px}.pill{font-size:8px}.decision-inner{margin:0;padding:15px 0;gap:15px}.decision b{font-size:10px}.decision span{font-size:8px}.decision-band{background:white}.sidebar,.mobile-contents,.back-top{display:none}.report-shell{display:block;padding:0;max-width:none}.article{border:0;box-shadow:none;border-radius:0;padding:15px 0}.doc-section{margin-top:20px;padding-top:20px}.doc-section h2{font-size:18px;break-after:avoid;page-break-after:avoid;margin-bottom:14px}.article h3{font-size:12px;break-after:avoid;page-break-after:avoid;margin-top:18px}.article p{margin-bottom:11px;orphans:3;widows:3}.article li{margin:4px 0}.article table{min-width:0;font-size:9px;line-height:1.5}.article th,.article td{padding:7px 8px}.table-wrap{overflow:visible;border:1px solid #dfe7ef}.article tr{break-inside:avoid;page-break-inside:avoid}thead{display:table-header-group}.article td code{font-size:8px}.article code{font-size:9px}.article pre{white-space:pre-wrap;font-size:9px;break-inside:avoid}.article pre code{font-size:8px;white-space:pre-wrap;overflow-wrap:anywhere}.article blockquote{font-size:10px;padding:12px 15px;break-inside:avoid}.diagram{break-inside:avoid;-webkit-print-color-adjust:exact;print-color-adjust:exact}.diagram-scroll{overflow:visible}.diagram svg{min-width:0}.diagram figcaption{font-size:8px}.footer>div{padding:12px 0;font-size:8px}.footer{background:white}.intro>p:first-child,.intro>p:nth-child(2){font-size:9px}.article .citation{font-size:8px}a{color:inherit}}
+</style>
+</head>
+<body id="atas">
+<header class="topbar"><div class="topbar-inner"><div class="brand"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><ellipse cx="16" cy="16" rx="14" ry="7" stroke="#73e4c3" transform="rotate(-32 16 16)"/><circle cx="16" cy="16" r="4" fill="#73e4c3"/><circle cx="27" cy="8" r="2" fill="#b3a6ff"/></svg><span>RUBBER / INTELLIGENCE</span></div><div class="status"><i></i>Dokumen desain · bukan data live</div></div></header>
+<div class="hero">
+<div class="hero-inner">
+<div class="hero-copy"><div class="eyebrow">TECHNICAL BLUEPRINT / 001</div>
+<h1>Rubber<br><em>Intelligence</em> Platform.</h1>
+<p class="subtitle">Memori industri karet alam—dari data mentah menuju hubungan, kejadian, dan bukti yang dapat ditelusuri.</p>
+<div class="pills"><span class="pill">Karet alam</span><span class="pill">Provenance-first</span><span class="pill">Galaxy interface</span></div>
+</div>
+<div class="hero-art"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 430" role="img" aria-labelledby="hero-title hero-desc">
+<title id="hero-title">Galaksi informasi karet alam, ilustrasi skematis</title>
+<desc id="hero-desc">Enam gugus topik terhubung dengan konsep karet alam. Ini ilustrasi desain, bukan visualisasi data nyata.</desc>
+<defs>
+<radialGradient id="hero-nebula"><stop offset="0" stop-color="#454080" stop-opacity=".38"/><stop offset=".6" stop-color="#1c3760" stop-opacity=".16"/><stop offset="1" stop-color="#101c30" stop-opacity="0"/></radialGradient>
+<radialGradient id="hero-core"><stop stop-color="#4fe6bc" stop-opacity=".25"/><stop offset="1" stop-color="#4fe6bc" stop-opacity="0"/></radialGradient>
+</defs>
+<ellipse cx="335" cy="215" rx="333.2" ry="197.8" fill="url(#hero-nebula)" transform="rotate(-16 335 215)"/><circle cx="310" cy="108" r="1.5" fill="#c2d4ee" opacity="0.41"/><circle cx="584" cy="402" r="1.2" fill="#c2d4ee" opacity="0.17"/><circle cx="456" cy="338" r="0.8" fill="#c2d4ee" opacity="0.56"/><circle cx="277" cy="158" r="0.8" fill="#c2d4ee" opacity="0.33"/><circle cx="37" cy="223" r="1.0" fill="#c2d4ee" opacity="0.51"/><circle cx="80" cy="363" r="1.0" fill="#c2d4ee" opacity="0.21"/><circle cx="490" cy="22" r="1.5" fill="#c2d4ee" opacity="0.35"/><circle cx="522" cy="229" r="0.7" fill="#c2d4ee" opacity="0.14"/><circle cx="235" cy="263" r="1.2" fill="#c2d4ee" opacity="0.33"/><circle cx="635" cy="322" r="1.5" fill="#c2d4ee" opacity="0.20"/><circle cx="82" cy="19" r="0.8" fill="#c2d4ee" opacity="0.44"/><circle cx="200" cy="324" r="0.8" fill="#c2d4ee" opacity="0.49"/><circle cx="498" cy="192" r="1.2" fill="#c2d4ee" opacity="0.39"/><circle cx="227" cy="281" r="1.5" fill="#c2d4ee" opacity="0.22"/><circle cx="260" cy="230" r="0.8" fill="#c2d4ee" opacity="0.29"/><circle cx="569" cy="343" r="0.7" fill="#c2d4ee" opacity="0.13"/><circle cx="479" cy="226" r="0.7" fill="#c2d4ee" opacity="0.14"/><circle cx="649" cy="408" r="1.5" fill="#c2d4ee" opacity="0.53"/><circle cx="136" cy="147" r="1.5" fill="#c2d4ee" opacity="0.19"/><circle cx="306" cy="212" r="0.8" fill="#c2d4ee" opacity="0.27"/><circle cx="584" cy="94" r="1.2" fill="#c2d4ee" opacity="0.40"/><circle cx="112" cy="309" r="1.0" fill="#c2d4ee" opacity="0.18"/><circle cx="289" cy="110" r="0.7" fill="#c2d4ee" opacity="0.48"/><circle cx="589" cy="140" r="1.5" fill="#c2d4ee" opacity="0.15"/><circle cx="45" cy="225" r="0.8" fill="#c2d4ee" opacity="0.48"/><circle cx="235" cy="322" r="1.5" fill="#c2d4ee" opacity="0.21"/><circle cx="168" cy="81" r="0.7" fill="#c2d4ee" opacity="0.23"/><circle cx="530" cy="153" r="1.2" fill="#c2d4ee" opacity="0.13"/><circle cx="370" cy="386" r="1.5" fill="#c2d4ee" opacity="0.51"/><circle cx="268" cy="386" r="0.8" fill="#c2d4ee" opacity="0.31"/><circle cx="253" cy="378" r="1.5" fill="#c2d4ee" opacity="0.21"/><circle cx="288" cy="376" r="0.7" fill="#c2d4ee" opacity="0.13"/><circle cx="53" cy="34" r="1.2" fill="#c2d4ee" opacity="0.47"/><circle cx="627" cy="339" r="1.0" fill="#c2d4ee" opacity="0.19"/><circle cx="131" cy="205" r="0.7" fill="#c2d4ee" opacity="0.35"/><circle cx="299" cy="94" r="1.0" fill="#c2d4ee" opacity="0.39"/><circle cx="591" cy="47" r="1.2" fill="#c2d4ee" opacity="0.47"/><circle cx="56" cy="112" r="1.2" fill="#c2d4ee" opacity="0.50"/><circle cx="517" cy="333" r="0.7" fill="#c2d4ee" opacity="0.54"/><circle cx="75" cy="20" r="0.7" fill="#c2d4ee" opacity="0.44"/><circle cx="461" cy="180" r="1.2" fill="#c2d4ee" opacity="0.27"/><circle cx="134" cy="228" r="1.5" fill="#c2d4ee" opacity="0.25"/><circle cx="375" cy="34" r="1.2" fill="#c2d4ee" opacity="0.42"/><circle cx="329" cy="326" r="0.7" fill="#c2d4ee" opacity="0.30"/><circle cx="203" cy="355" r="1.5" fill="#c2d4ee" opacity="0.37"/><circle cx="548" cy="236" r="0.8" fill="#c2d4ee" opacity="0.14"/><circle cx="430" cy="192" r="0.7" fill="#c2d4ee" opacity="0.15"/><circle cx="109" cy="300" r="1.5" fill="#c2d4ee" opacity="0.32"/><circle cx="603" cy="370" r="1.0" fill="#c2d4ee" opacity="0.48"/><circle cx="660" cy="405" r="1.0" fill="#c2d4ee" opacity="0.29"/><circle cx="517" cy="209" r="0.8" fill="#c2d4ee" opacity="0.42"/><circle cx="142" cy="110" r="1.5" fill="#c2d4ee" opacity="0.34"/><circle cx="424" cy="377" r="1.2" fill="#c2d4ee" opacity="0.16"/><circle cx="294" cy="55" r="0.8" fill="#c2d4ee" opacity="0.31"/><circle cx="619" cy="364" r="1.5" fill="#c2d4ee" opacity="0.44"/><circle cx="55" cy="17" r="0.8" fill="#c2d4ee" opacity="0.54"/><circle cx="315" cy="247" r="0.7" fill="#c2d4ee" opacity="0.21"/><circle cx="395" cy="128" r="1.5" fill="#c2d4ee" opacity="0.27"/><circle cx="610" cy="18" r="1.5" fill="#c2d4ee" opacity="0.34"/><circle cx="598" cy="157" r="1.2" fill="#c2d4ee" opacity="0.26"/><circle cx="309" cy="63" r="1.5" fill="#c2d4ee" opacity="0.54"/><circle cx="92" cy="189" r="1.0" fill="#c2d4ee" opacity="0.47"/><circle cx="234" cy="333" r="0.7" fill="#c2d4ee" opacity="0.39"/><circle cx="165" cy="390" r="0.8" fill="#c2d4ee" opacity="0.16"/><circle cx="540" cy="77" r="1.2" fill="#c2d4ee" opacity="0.34"/><circle cx="265" cy="153" r="0.7" fill="#c2d4ee" opacity="0.35"/><circle cx="508" cy="330" r="0.8" fill="#c2d4ee" opacity="0.18"/><circle cx="381" cy="284" r="1.5" fill="#c2d4ee" opacity="0.50"/><circle cx="412" cy="62" r="1.2" fill="#c2d4ee" opacity="0.18"/><circle cx="416" cy="243" r="1.0" fill="#c2d4ee" opacity="0.22"/><circle cx="533" cy="158" r="0.7" fill="#c2d4ee" opacity="0.48"/><circle cx="452" cy="121" r="0.8" fill="#c2d4ee" opacity="0.49"/><circle cx="103" cy="223" r="1.5" fill="#c2d4ee" opacity="0.26"/><circle cx="551" cy="380" r="1.2" fill="#c2d4ee" opacity="0.45"/><circle cx="302" cy="187" r="0.7" fill="#c2d4ee" opacity="0.36"/><circle cx="178" cy="411" r="1.0" fill="#c2d4ee" opacity="0.17"/><circle cx="403" cy="177" r="0.7" fill="#c2d4ee" opacity="0.39"/><circle cx="524" cy="262" r="0.8" fill="#c2d4ee" opacity="0.17"/><circle cx="642" cy="26" r="1.0" fill="#c2d4ee" opacity="0.40"/><circle cx="79" cy="348" r="1.5" fill="#c2d4ee" opacity="0.41"/><circle cx="198" cy="130" r="1.0" fill="#c2d4ee" opacity="0.25"/><circle cx="582" cy="362" r="1.2" fill="#c2d4ee" opacity="0.21"/><circle cx="338" cy="241" r="1.5" fill="#c2d4ee" opacity="0.18"/><circle cx="574" cy="33" r="0.8" fill="#c2d4ee" opacity="0.24"/><circle cx="483" cy="241" r="1.2" fill="#c2d4ee" opacity="0.24"/><circle cx="397" cy="117" r="1.0" fill="#c2d4ee" opacity="0.21"/><circle cx="571" cy="299" r="1.2" fill="#c2d4ee" opacity="0.30"/><circle cx="53" cy="219" r="0.7" fill="#c2d4ee" opacity="0.27"/><circle cx="299" cy="284" r="1.2" fill="#c2d4ee" opacity="0.56"/><circle cx="271" cy="222" r="0.8" fill="#c2d4ee" opacity="0.38"/><circle cx="504" cy="283" r="0.8" fill="#c2d4ee" opacity="0.26"/><circle cx="473" cy="142" r="0.8" fill="#c2d4ee" opacity="0.17"/><circle cx="568" cy="339" r="0.7" fill="#c2d4ee" opacity="0.35"/><circle cx="409" cy="219" r="0.7" fill="#c2d4ee" opacity="0.14"/><circle cx="282" cy="49" r="1.2" fill="#c2d4ee" opacity="0.12"/><circle cx="389" cy="216" r="1.0" fill="#c2d4ee" opacity="0.14"/><circle cx="135" cy="336" r="0.7" fill="#c2d4ee" opacity="0.44"/><circle cx="292" cy="70" r="1.5" fill="#c2d4ee" opacity="0.33"/><circle cx="279" cy="229" r="1.5" fill="#c2d4ee" opacity="0.35"/><circle cx="66" cy="336" r="1.0" fill="#c2d4ee" opacity="0.51"/><circle cx="466" cy="306" r="1.5" fill="#c2d4ee" opacity="0.37"/><circle cx="168" cy="251" r="1.2" fill="#c2d4ee" opacity="0.44"/><circle cx="59" cy="407" r="1.5" fill="#c2d4ee" opacity="0.32"/><circle cx="45" cy="316" r="0.7" fill="#c2d4ee" opacity="0.33"/><circle cx="251" cy="260" r="1.5" fill="#c2d4ee" opacity="0.20"/><circle cx="235" cy="160" r="1.0" fill="#c2d4ee" opacity="0.48"/><circle cx="215" cy="135" r="0.8" fill="#c2d4ee" opacity="0.34"/><circle cx="151" cy="56" r="1.2" fill="#c2d4ee" opacity="0.44"/><circle cx="88" cy="365" r="0.7" fill="#c2d4ee" opacity="0.31"/><circle cx="112" cy="293" r="1.0" fill="#c2d4ee" opacity="0.14"/><ellipse cx="335" cy="215" rx="128.2" ry="72.7" fill="none" stroke="#53698a" stroke-opacity=".2" stroke-dasharray="3 8" transform="rotate(-14 335 215)"/><ellipse cx="335" cy="215" rx="197.2" ry="111.8" fill="none" stroke="#53698a" stroke-opacity=".2" stroke-dasharray="3 8" transform="rotate(-14 335 215)"/><ellipse cx="335" cy="215" rx="266.2" ry="150.9" fill="none" stroke="#53698a" stroke-opacity=".2" stroke-dasharray="3 8" transform="rotate(-14 335 215)"/><path d="M335 215 Q199.5 204.5 154 104" fill="none" stroke="#62e6c5" stroke-width="1.4" stroke-opacity=".35"/><path d="M154 104 L182.0 104.0" stroke="#62e6c5" stroke-opacity=".27"/><circle cx="182.0" cy="104.0" r="4" fill="#62e6c5" opacity=".8"/><path d="M154 104 L165.7 123.9" stroke="#62e6c5" stroke-opacity=".27"/><circle cx="165.7" cy="123.9" r="2.5" fill="#62e6c5" opacity=".8"/><path d="M154 104 L122.4 116.6" stroke="#62e6c5" stroke-opacity=".27"/><circle cx="122.4" cy="116.6" r="3" fill="#62e6c5" opacity=".8"/><path d="M154 104 L114.4 88.2" stroke="#62e6c5" stroke-opacity=".27"/><circle cx="114.4" cy="88.2" r="4" fill="#62e6c5" opacity=".8"/><path d="M154 104 L165.4 84.6" stroke="#62e6c5" stroke-opacity=".27"/><circle cx="165.4" cy="84.6" r="3" fill="#62e6c5" opacity=".8"/><circle cx="154" cy="104" r="18" fill="#62e6c5" opacity=".09"/><circle cx="154" cy="104" r="6" fill="#62e6c5"/><rect x="114.6" y="66.0" width="78.8" height="22" rx="5" fill="#111e32" fill-opacity=".84"/><text x="154" y="81" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#62e6c5" text-anchor="middle">Pasokan</text><path d="M335 215 Q466.5 109.5 508 94" fill="none" stroke="#ae9bff" stroke-width="1.4" stroke-opacity=".35"/><path d="M508 94 L548.1 100.8" stroke="#ae9bff" stroke-opacity=".27"/><circle cx="548.1" cy="100.8" r="4" fill="#ae9bff" opacity=".8"/><path d="M508 94 L508.4 111.0" stroke="#ae9bff" stroke-opacity=".27"/><circle cx="508.4" cy="111.0" r="3" fill="#ae9bff" opacity=".8"/><path d="M508 94 L462.6 102.5" stroke="#ae9bff" stroke-opacity=".27"/><circle cx="462.6" cy="102.5" r="4" fill="#ae9bff" opacity=".8"/><path d="M508 94 L480.4 73.7" stroke="#ae9bff" stroke-opacity=".27"/><circle cx="480.4" cy="73.7" r="3" fill="#ae9bff" opacity=".8"/><path d="M508 94 L528.7 77.8" stroke="#ae9bff" stroke-opacity=".27"/><circle cx="528.7" cy="77.8" r="2.5" fill="#ae9bff" opacity=".8"/><circle cx="508" cy="94" r="18" fill="#ae9bff" opacity=".09"/><circle cx="508" cy="94" r="6" fill="#ae9bff"/><rect x="477.3" y="56.0" width="61.4" height="22" rx="5" fill="#111e32" fill-opacity=".84"/><text x="508" y="71" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#ae9bff" text-anchor="middle">Harga</text><path d="M335 215 Q396.5 297.5 548 290" fill="none" stroke="#f5c578" stroke-width="1.4" stroke-opacity=".35"/><path d="M548 290 L584.3 303.7" stroke="#f5c578" stroke-opacity=".27"/><circle cx="584.3" cy="303.7" r="4" fill="#f5c578" opacity=".8"/><path d="M548 290 L539.3 306.4" stroke="#f5c578" stroke-opacity=".27"/><circle cx="539.3" cy="306.4" r="2.5" fill="#f5c578" opacity=".8"/><path d="M548 290 L512.0 290.6" stroke="#f5c578" stroke-opacity=".27"/><circle cx="512.0" cy="290.6" r="2.5" fill="#f5c578" opacity=".8"/><path d="M548 290 L537.6 273.9" stroke="#f5c578" stroke-opacity=".27"/><circle cx="537.6" cy="273.9" r="2.5" fill="#f5c578" opacity=".8"/><path d="M548 290 L577.3 277.6" stroke="#f5c578" stroke-opacity=".27"/><circle cx="577.3" cy="277.6" r="3" fill="#f5c578" opacity=".8"/><circle cx="548" cy="290" r="18" fill="#f5c578" opacity=".09"/><circle cx="548" cy="290" r="6" fill="#f5c578"/><rect x="517.3" y="252.0" width="61.4" height="22" rx="5" fill="#111e32" fill-opacity=".84"/><text x="548" y="267" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#f5c578" text-anchor="middle">Cuaca</text><path d="M335 215 Q295.0 227.0 165 329" fill="none" stroke="#7dbbff" stroke-width="1.4" stroke-opacity=".35"/><path d="M165 329 L195.5 350.1" stroke="#7dbbff" stroke-opacity=".27"/><circle cx="195.5" cy="350.1" r="4" fill="#7dbbff" opacity=".8"/><path d="M165 329 L141.2 348.7" stroke="#7dbbff" stroke-opacity=".27"/><circle cx="141.2" cy="348.7" r="2.5" fill="#7dbbff" opacity=".8"/><path d="M165 329 L121.7 322.4" stroke="#7dbbff" stroke-opacity=".27"/><circle cx="121.7" cy="322.4" r="4" fill="#7dbbff" opacity=".8"/><path d="M165 329 L163.2 305.9" stroke="#7dbbff" stroke-opacity=".27"/><circle cx="163.2" cy="305.9" r="2.5" fill="#7dbbff" opacity=".8"/><path d="M165 329 L192.2 323.4" stroke="#7dbbff" stroke-opacity=".27"/><circle cx="192.2" cy="323.4" r="4" fill="#7dbbff" opacity=".8"/><circle cx="165" cy="329" r="18" fill="#7dbbff" opacity=".09"/><circle cx="165" cy="329" r="6" fill="#7dbbff"/><rect x="134.3" y="291.0" width="61.4" height="22" rx="5" fill="#111e32" fill-opacity=".84"/><text x="165" y="306" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#7dbbff" text-anchor="middle">Bukti</text><path d="M335 215 Q295.0 175.0 345 45" fill="none" stroke="#f6a9c0" stroke-width="1.4" stroke-opacity=".35"/><path d="M345 45 L362.8 70.1" stroke="#f6a9c0" stroke-opacity=".27"/><circle cx="362.8" cy="70.1" r="4" fill="#f6a9c0" opacity=".8"/><path d="M345 45 L319.4 56.5" stroke="#f6a9c0" stroke-opacity=".27"/><circle cx="319.4" cy="56.5" r="4" fill="#f6a9c0" opacity=".8"/><path d="M345 45 L308.8 32.2" stroke="#f6a9c0" stroke-opacity=".27"/><circle cx="308.8" cy="32.2" r="2.5" fill="#f6a9c0" opacity=".8"/><path d="M345 45 L353.7 26.9" stroke="#f6a9c0" stroke-opacity=".27"/><circle cx="353.7" cy="26.9" r="3" fill="#f6a9c0" opacity=".8"/><path d="M345 45 L379.9 43.9" stroke="#f6a9c0" stroke-opacity=".27"/><circle cx="379.9" cy="43.9" r="4" fill="#f6a9c0" opacity=".8"/><circle cx="345" cy="45" r="18" fill="#f6a9c0" opacity=".09"/><circle cx="345" cy="45" r="6" fill="#f6a9c0"/><rect x="301.3" y="7.0" width="87.4" height="22" rx="5" fill="#111e32" fill-opacity=".84"/><text x="345" y="22" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#f6a9c0" text-anchor="middle">Regulasi</text><path d="M335 215 Q390.0 248.0 355 371" fill="none" stroke="#80d9f2" stroke-width="1.4" stroke-opacity=".35"/><path d="M355 371 L357.3 389.1" stroke="#80d9f2" stroke-opacity=".27"/><circle cx="357.3" cy="389.1" r="4" fill="#80d9f2" opacity=".8"/><path d="M355 371 L312.4 380.5" stroke="#80d9f2" stroke-opacity=".27"/><circle cx="312.4" cy="380.5" r="2.5" fill="#80d9f2" opacity=".8"/><path d="M355 371 L324.1 350.8" stroke="#80d9f2" stroke-opacity=".27"/><circle cx="324.1" cy="350.8" r="3" fill="#80d9f2" opacity=".8"/><path d="M355 371 L379.3 349.5" stroke="#80d9f2" stroke-opacity=".27"/><circle cx="379.3" cy="349.5" r="4" fill="#80d9f2" opacity=".8"/><path d="M355 371 L384.1 375.0" stroke="#80d9f2" stroke-opacity=".27"/><circle cx="384.1" cy="375.0" r="4" fill="#80d9f2" opacity=".8"/><circle cx="355" cy="371" r="18" fill="#80d9f2" opacity=".09"/><circle cx="355" cy="371" r="6" fill="#80d9f2"/><rect x="311.3" y="333.0" width="87.4" height="22" rx="5" fill="#111e32" fill-opacity=".84"/><text x="355" y="348" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#80d9f2" text-anchor="middle">Logistik</text><circle cx="335" cy="215" r="90" fill="url(#hero-core)"/><circle cx="335" cy="215" r="48" fill="#142d3d" stroke="#74e7c7" stroke-opacity=".7"/><circle cx="335" cy="215" r="57" fill="none" stroke="#7ee8ce" stroke-opacity=".13"/><text x="335" y="213" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" fill="#d8fff1" text-anchor="middle">KARET</text><text x="335" y="234" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" fill="#d8fff1" text-anchor="middle">ALAM</text></svg></div>
+</div>
+<div class="hero-foot"><span><strong>v1.0</strong> &nbsp;/&nbsp; 15 Oktober 2026 &nbsp;/&nbsp; Rancangan dari nol</span><span>ARSIPKAN &nbsp;·&nbsp; VALIDASI &nbsp;·&nbsp; HUBUNGKAN &nbsp;·&nbsp; TELUSURI</span></div>
+</div>
+<div class="decision-band"><div class="decision-inner">
+<div class="decision"><b>Memori sebelum intelligence</b><span>Data asli, versi, waktu, dan bukti.</span></div>
+<div class="decision"><b>Otomatis, tetap terkendali</b><span>Sumber disetujui; cakupan terlihat.</span></div>
+<div class="decision"><b>Galaksi yang dapat dijelaskan</b><span>Setiap garis memiliki makna.</span></div>
+</div></div>
+<div class="report-shell">
+<aside class="sidebar" aria-label="Daftar isi"><div class="sidebar-title">DALAM BLUEPRINT INI</div><nav><a href="#ringkasan"><span>00</span> Ringkasan</a><a href="#s01"><span>01</span> Tujuan dan keputusan awal</a><a href="#s02"><span>02</span> Ruang lingkup MVP</a><a href="#s03"><span>03</span> Arsitektur sistem</a><a href="#s04"><span>04</span> Penerimaan data dan alur pemrosesan</a><a href="#s05"><span>05</span> Katalog sumber eksternal</a><a href="#s06"><span>06</span> Cara sistem melacak sendiri data eksternal</a><a href="#s07"><span>07</span> Ontologi karet alam dan aturan normalisasi</a><a href="#s08"><span>08</span> Model data logis</a><a href="#s09"><span>09</span> Waktu, kualitas, dan kebenaran</a><a href="#s10"><span>10</span> Galaksi sebagai antarmuka pengetahuan</a><a href="#s11"><span>11</span> Intelligence dan peringatan</a><a href="#s12"><span>12</span> Kontrak API awal</a><a href="#s13"><span>13</span> Keamanan, deployment, dan operasi</a><a href="#s14"><span>14</span> Roadmap pengembangan</a><a href="#s15"><span>15</span> Kriteria penerimaan dan biaya</a><a href="#s16"><span>16</span> Keputusan yang dibekukan dan langkah berikutnya</a><a href="#referensi"><span>R</span> Referensi</a></nav><div class="sidebar-note">Nama produk adalah nama kerja. Belum ada kolektor aktif atau data perusahaan terhubung.<br><a class="back-top" href="#atas">↑ Kembali ke awal</a></div></aside>
+<main><details class="mobile-contents"><summary>Daftar isi · 16 bagian + referensi</summary><nav><a href="#ringkasan"><span>00</span> Ringkasan</a><a href="#s01"><span>01</span> Tujuan dan keputusan awal</a><a href="#s02"><span>02</span> Ruang lingkup MVP</a><a href="#s03"><span>03</span> Arsitektur sistem</a><a href="#s04"><span>04</span> Penerimaan data dan alur pemrosesan</a><a href="#s05"><span>05</span> Katalog sumber eksternal</a><a href="#s06"><span>06</span> Cara sistem melacak sendiri data eksternal</a><a href="#s07"><span>07</span> Ontologi karet alam dan aturan normalisasi</a><a href="#s08"><span>08</span> Model data logis</a><a href="#s09"><span>09</span> Waktu, kualitas, dan kebenaran</a><a href="#s10"><span>10</span> Galaksi sebagai antarmuka pengetahuan</a><a href="#s11"><span>11</span> Intelligence dan peringatan</a><a href="#s12"><span>12</span> Kontrak API awal</a><a href="#s13"><span>13</span> Keamanan, deployment, dan operasi</a><a href="#s14"><span>14</span> Roadmap pengembangan</a><a href="#s15"><span>15</span> Kriteria penerimaan dan biaya</a><a href="#s16"><span>16</span> Keputusan yang dibekukan dan langkah berikutnya</a><a href="#referensi"><span>R</span> Referensi</a></nav></details><div class="article"><div class="intro" id="ringkasan">
+
+<p><strong>Tanggal:</strong> 15 Oktober 2026 · <strong>Fokus:</strong> karet alam · <strong>Tahap:</strong> mulai dari nol<br/>
+<strong>Status:</strong> usulan desain untuk pengembangan; belum ada aplikasi, kolektor aktif, atau data perusahaan yang terhubung.</p>
+<blockquote>
+<p><strong>Visi:</strong> menjadi memori industri karet alam yang terus bertambah—menerima data, mempertahankan bukti, mengenali hubungan, dan memperlihatkan perubahan melalui sebuah galaksi informasi.</p>
+<p><strong>Batas penting:</strong> sistem merekam informasi yang berhasil diperoleh dari sumber yang diizinkan. Sistem tidak dapat menjamin mengetahui seluruh kejadian di dunia, dan tidak boleh memperlakukan setiap informasi yang masuk sebagai kebenaran.</p>
+</blockquote>
+</div><section class="doc-section" id="s01"><h2><span class="section-no">01</span>Tujuan dan keputusan awal</h2>
+<p>Tiga keputusan dari pengguna sudah ditetapkan: <strong>mulai dari nol, fokus karet alam, dan mendahulukan rancangan teknis</strong>. Nama produk di atas adalah nama kerja, bukan merek final.</p>
+<h3>Pertanyaan yang harus mampu dijawab</h3>
+<ol>
+<li>Informasi baru apa yang relevan dengan karet alam, dan dari mana asalnya?</li>
+<li>Pemasok, wilayah produksi, pabrik, produk, harga, dan kejadian mana yang saling berhubungan?</li>
+<li>Bagaimana informasi tersebut berubah dari waktu ke waktu?</li>
+<li>Risiko atau peluang apa yang perlu diperiksa manusia, beserta bukti dan keterbatasannya?</li>
+<li>Data mana yang belum tersedia, terlambat, bertentangan, atau gagal diproses?</li>
+</ol>
+<h3>Asumsi kerja—masih bisa diubah</h3>
+<ul>
+<li>Pilot digunakan satu organisasi; pemisahan organisasi disiapkan sejak model data.</li>
+<li>Operasi awal berorientasi Indonesia, dengan informasi pasar global dari sumber terpilih. Sumatera Utara boleh menjadi wilayah pilot <strong>jika sesuai kegiatan usaha</strong>, bukan karena dianggap sebagai satu-satunya wilayah relevan.</li>
+<li>Pengguna awal: admin, pengelola data, analis/pengadaan, dan pembaca.</li>
+<li>Bahasa antarmuka Indonesia; dokumen Indonesia/Inggris didahulukan.</li>
+<li>Belum ada sampel data, anggaran, volume, daftar pemasok, akun API, atau hak penggunaan feed yang diberikan. Semua kapasitas dan jadwal di dokumen ini adalah sasaran perencanaan, bukan hasil pengujian.</li>
+</ul>
+<p><strong>Keputusan arsitektur utama:</strong> bangun sebuah <strong>modular monolith dengan worker asinkron</strong>, penyimpanan objek untuk data mentah, dan PostgreSQL untuk metadata, pencarian awal, serta relasi. Knowledge graph adalah model pengetahuan; pada MVP, ia tidak membutuhkan database graph terpisah.</p>
+</section><section class="doc-section" id="s02"><h2><span class="section-no">02</span>Ruang lingkup MVP</h2>
+<div aria-label="Tabel rincian teknis; dapat digeser horizontal" class="table-wrap" role="region" tabindex="0"><table>
+<thead>
+<tr>
+<th>Masuk MVP</th>
+<th>Ditunda hingga kebutuhan dan akses jelas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unggah CSV, XLSX, JSON, TXT, dan PDF berbasis teks</td>
+<td>OCR massal, audio/video, sensor/IoT, integrasi ERP penuh</td>
+</tr>
+<tr>
+<td>Arsip asli yang diizinkan, checksum, riwayat versi, dan katalog</td>
+<td>Pengarsipan tanpa batas waktu dan tanpa kebijakan retensi</td>
+</tr>
+<tr>
+<td>Pencarian teks, filter, halaman bukti, dan antrean review</td>
+<td>Asisten percakapan generatif menyeluruh</td>
+</tr>
+<tr>
+<td>Tiga adapter eksternal kandidat: World Bank, BMKG, penemuan berita GDELT/feed yang disetujui</td>
+<td>BPS, UN Comtrade, feed bursa berlisensi, satelit, dan regulasi lintas negara</td>
+</tr>
+<tr>
+<td>Entitas dasar, relasi berbukti, timeline, dan galaksi 2D</td>
+<td>Galaksi 3D sebagai tampilan utama dan jutaan node sekaligus</td>
+</tr>
+<tr>
+<td>Watchlist dan beberapa aturan peringatan yang transparan</td>
+<td>Prediksi harga, keputusan pembelian otomatis, dan klaim sebab-akibat otomatis</td>
+</tr>
+<tr>
+<td>Hak akses, log audit, pemantauan kolektor, backup dan uji pemulihan</td>
+<td>Ketersediaan tinggi multi-region dan platform streaming kompleks</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Catatan akses:</strong> adapter kandidat baru boleh diaktifkan setelah uji koneksi, skema, kuota, izin pemrosesan/penyimpanan, dan atribusi lulus. Jika GDELT/feed tidak lolos, MVP memakai impor metadata berita yang berizin; tidak diganti dengan crawling bebas.</p>
+<p><strong>Arti “menerima segala data”:</strong> lapisan penerimaan dibuat dapat diperluas. File yang lolos pemeriksaan keamanan dan memiliki izin penyimpanan dapat diarsipkan meskipun parser-nya belum tersedia. Statusnya <strong>arsip saja / belum dapat dibaca</strong>, bukan dianggap sudah dipahami. File berbahaya, terlalu besar, terenkripsi tanpa mekanisme yang disetujui, atau tanpa dasar akses yang jelas ditolak/ditahan dengan alasan tercatat.</p>
+</section><section class="doc-section" id="s03"><h2><span class="section-no">03</span>Arsitektur sistem</h2>
+<figure class="diagram architecture"><div class="diagram-scroll"><svg aria-labelledby="arch-title arch-desc" role="img" viewbox="0 0 1200 552" xmlns="http://www.w3.org/2000/svg">
+<title id="arch-title">Arsitektur Rubber Intelligence Platform</title>
+<desc id="arch-desc">Alur dari sumber, katalog dan penerimaan, arsip mentah, pekerjaan durabel, worker, data ternormalisasi, API, menuju pencarian dan galaksi. Hak akses, audit, serta observabilitas melintasi seluruh komponen.</desc>
+<defs>
+<marker id="arr" markerheight="8" markerwidth="8" orient="auto" refx="6" refy="4"><path d="M0,0 L8,4 L0,8" fill="none" stroke="#77889b" stroke-width="1.5"></path></marker>
+</defs>
+<rect fill="#f4f7fb" height="552" rx="22" width="1200" x="0" y="0"></rect>
+<text fill="#63758c" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" text-anchor="start" x="28" y="32">DATA FLOW / MVP</text><rect fill="#ffffff" height="148" rx="14" stroke="#dce4ed" width="262" x="28" y="64"></rect><rect fill="#64748b" height="34" rx="2" width="4" x="28" y="83"></rect><text fill="#64748b" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" text-anchor="start" x="48" y="92">01</text><text fill="#1b2d43" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" text-anchor="start" x="48" y="122">Sumber</text><text fill="#53667d" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start" x="48" y="158">Unggah file internal</text><text fill="#53667d" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start" x="48" y="184">API / feed disetujui</text><rect fill="#ffffff" height="148" rx="14" stroke="#dce4ed" width="262" x="322" y="64"></rect><rect fill="#64748b" height="34" rx="2" width="4" x="322" y="83"></rect><text fill="#64748b" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" text-anchor="start" x="342" y="92">02</text><text fill="#1b2d43" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" text-anchor="start" x="342" y="122">Katalog + intake</text><text fill="#53667d" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start" x="342" y="158">Izin · jadwal · kuota</text><text fill="#53667d" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start" x="342" y="184">Pemeriksaan keamanan</text><rect fill="#fff9ed" height="148" rx="14" stroke="#dce4ed" width="262" x="616" y="64"></rect><rect fill="#b77920" height="34" rx="2" width="4" x="616" y="83"></rect><text fill="#b77920" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" text-anchor="start" x="636" y="92">03</text><text fill="#1b2d43" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" text-anchor="start" x="636" y="122">Raw / bronze</text><text fill="#53667d" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start" x="636" y="158">Object storage privat</text><text fill="#53667d" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start" x="636" y="184">Byte asli · hash · versi</text><rect fill="#f2f4ff" height="148" rx="14" stroke="#dce4ed" width="262" x="910" y="64"></rect><rect fill="#5269c8" height="34" rx="2" width="4" x="910" y="83"></rect><text fill="#5269c8" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" text-anchor="start" x="930" y="92">04</text><text fill="#1b2d43" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" text-anchor="start" x="930" y="122">Job durabel</text><text fill="#53667d" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start" x="930" y="158">PostgreSQL + outbox</text><text fill="#53667d" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start" x="930" y="184">Queue + checkpoint</text><rect fill="#f2f4ff" height="148" rx="14" stroke="#dce4ed" width="262" x="910" y="294"></rect><rect fill="#5269c8" height="34" rx="2" width="4" x="910" y="313"></rect><text fill="#5269c8" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" text-anchor="start" x="930" y="322">05</text><text fill="#1b2d43" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" text-anchor="start" x="930" y="352">Worker asinkron</text><text fill="#53667d" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start" x="930" y="388">Parse · normalisasi</text><text fill="#53667d" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start" x="930" y="414">Validasi · ekstraksi</text><rect fill="#ecfaf8" height="148" rx="14" stroke="#dce4ed" width="262" x="616" y="294"></rect><rect fill="#168e91" height="34" rx="2" width="4" x="616" y="313"></rect><text fill="#168e91" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" text-anchor="start" x="636" y="322">06</text><text fill="#1b2d43" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" text-anchor="start" x="636" y="352">Normalized / silver</text><text fill="#53667d" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start" x="636" y="388">PostgreSQL + bukti</text><text fill="#53667d" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start" x="636" y="414">Klaim · entitas · waktu</text><rect fill="#f6f1ff" height="148" rx="14" stroke="#dce4ed" width="262" x="322" y="294"></rect><rect fill="#795fc3" height="34" rx="2" width="4" x="322" y="313"></rect><text fill="#795fc3" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" text-anchor="start" x="342" y="322">07</text><text fill="#1b2d43" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" text-anchor="start" x="342" y="352">Serving / gold</text><text fill="#53667d" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start" x="342" y="388">Graph · indeks · aturan</text><text fill="#53667d" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start" x="342" y="414">API + hak akses</text><rect fill="#ecfaf8" height="148" rx="14" stroke="#dce4ed" width="262" x="28" y="294"></rect><rect fill="#168e91" height="34" rx="2" width="4" x="28" y="313"></rect><text fill="#168e91" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" text-anchor="start" x="48" y="322">08</text><text fill="#1b2d43" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" text-anchor="start" x="48" y="352">Pengalaman</text><text fill="#53667d" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start" x="48" y="388">Cari · galaksi · timeline</text><text fill="#53667d" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start" x="48" y="414">Review · watchlist · alert</text><path d="M294 138 H312" fill="none" marker-end="url(#arr)" stroke="#77889b" stroke-width="2"></path><path d="M588 138 H606" fill="none" marker-end="url(#arr)" stroke="#77889b" stroke-width="2"></path><path d="M882 138 H900" fill="none" marker-end="url(#arr)" stroke="#77889b" stroke-width="2"></path><path d="M1041 219 V280" fill="none" marker-end="url(#arr)" stroke="#77889b" stroke-width="2"></path><path d="M904 368 H888" fill="none" marker-end="url(#arr)" stroke="#77889b" stroke-width="2"></path><path d="M610 368 H594" fill="none" marker-end="url(#arr)" stroke="#77889b" stroke-width="2"></path><path d="M316 368 H300" fill="none" marker-end="url(#arr)" stroke="#77889b" stroke-width="2"></path><text fill="#63758c" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="middle" x="600" y="257">Perubahan membentuk versi baru; data meragukan masuk review.</text><rect fill="#e5ecf4" height="48" rx="10" width="1144" x="28" y="476"></rect><text fill="#3e5671" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="600" text-anchor="middle" x="600" y="506">LINTAS LAPISAN   /   RBAC · audit · retensi · observabilitas · pemulihan</text></svg></div><figcaption>Arsitektur MVP: satu fondasi data, pemrosesan asinkron, dan antarmuka yang dapat ditelusuri. Komponen belum diimplementasikan.</figcaption></figure>
+<pre><code class="language-text">SUMBER INTERNAL                     SUMBER EKSTERNAL YANG DISETUJUI
+unggah file / API internal           API / feed / penemuan sumber terbatas
+             \                       /
+              KATALOG SUMBER + PENERIMAAN AMAN
+                         |
+                ARSIP MENTAH + MANIFEST
+                         |
+             JOB DURABEL -&gt; QUEUE -&gt; WORKER
+                         |
+       parse -&gt; normalisasi -&gt; validasi -&gt; pencocokan entitas
+                         |
+          BUKTI + KLAIM + OBSERVASI + KEJADIAN
+                         |
+               API DENGAN HAK AKSES
+                         |
+       pencarian | galaksi | timeline | watchlist | review
+</code></pre>
+<h3>Tiga lapisan data</h3>
+<ul>
+<li><strong>Raw / bronze:</strong> byte atau respons sumber yang boleh disimpan, manifest pengambilan, checksum, dan hak penggunaannya. Tidak diubah diam-diam oleh hasil AI.</li>
+<li><strong>Normalized / silver:</strong> teks/tabel hasil parsing, satuan dan waktu yang dinormalisasi, bukti per halaman/baris, serta hasil ekstraksi berversi. Data tidak valid tetap bisa dilacak ke raw dan masuk karantina.</li>
+<li><strong>Serving / gold:</strong> indeks pencarian, entitas kanonis, tampilan graph, agregasi, dan sinyal risiko. Lapisan ini dapat dibangun ulang dari data serta versi pemrosesan yang masih tersedia sesuai retensi.</li>
+</ul>
+<p>Pada MVP, bronze berada di object storage; silver dan gold terutama di PostgreSQL. Istilah tiga lapisan ini <strong>tidak berarti</strong> harus memasang tiga platform data terpisah.</p>
+<h3>Stack yang direkomendasikan</h3>
+<div aria-label="Tabel rincian teknis; dapat digeser horizontal" class="table-wrap" role="region" tabindex="0"><table>
+<thead>
+<tr>
+<th>Komponen</th>
+<th>Pilihan awal</th>
+<th>Alasan / batas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Antarmuka</td>
+<td>Next.js + TypeScript</td>
+<td>Dashboard, pencarian, detail bukti, dan panel galaksi</td>
+</tr>
+<tr>
+<td>Visual graph</td>
+<td>Sigma.js, WebGL 2D</td>
+<td>Cluster dan eksplorasi bertahap; 3D opsional belakangan</td>
+</tr>
+<tr>
+<td>Backend</td>
+<td>FastAPI + Pydantic</td>
+<td>Kontrak bertipe, adapter Python, API terstruktur</td>
+</tr>
+<tr>
+<td>Data utama</td>
+<td>PostgreSQL + JSONB + PostGIS + pg_trgm</td>
+<td>Data relasional, lokasi, alias, dan graph adjacency</td>
+</tr>
+<tr>
+<td>Pencarian awal</td>
+<td>PostgreSQL full-text + indeks terstruktur</td>
+<td>Uji tokenisasi Indonesia/Inggris; jangan mengasumsikan stemming Indonesia tersedia otomatis</td>
+</tr>
+<tr>
+<td>Raw storage</td>
+<td>Object storage kompatibel S3, bucket privat, versioning</td>
+<td>File besar terpisah dari database; lifecycle mengikuti izin dan retensi</td>
+</tr>
+<tr>
+<td>Pekerjaan asinkron</td>
+<td>Celery + Redis, dengan tabel job/outbox durabel di PostgreSQL</td>
+<td>Queue bukan satu-satunya catatan pekerjaan; pemulihan dan idempotensi wajib</td>
+</tr>
+<tr>
+<td>Ekstraksi</td>
+<td>Parser deterministik dahulu; LLM terkontrol untuk dokumen tidak terstruktur</td>
+<td>Output harus terikat bukti dan skema; model bukan sumber kebenaran</td>
+</tr>
+<tr>
+<td>Deployment awal</td>
+<td>Container; PostgreSQL dan object storage terkelola bila memungkinkan</td>
+<td>Docker Compose untuk pengembangan, bukan otomatis rancangan produksi aman</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Jangan pasang semua teknologi sekaligus.</strong> Tambahkan pgvector jika pencarian semantik terbukti membantu; OpenSearch jika pencarian teks menjadi bottleneck; Parquet/Iceberg dan mesin komputasi terdistribusi jika pengolahan historis memang melampaui kapasitas awal. Kafka untuk kebutuhan replay/streaming berkelanjutan yang terukur; ClickHouse untuk agregasi besar; Neo4j untuk traversal graph kompleks yang tidak memenuhi sasaran di PostgreSQL. Evaluasi satu bottleneck pada satu waktu.</p>
+</section><section class="doc-section" id="s04"><h2><span class="section-no">04</span>Penerimaan data dan alur pemrosesan</h2>
+<h3>Format awal</h3>
+<div aria-label="Tabel rincian teknis; dapat digeser horizontal" class="table-wrap" role="region" tabindex="0"><table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Perlakuan MVP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CSV / XLSX</td>
+<td>Preview, pemetaan kolom, validasi tanggal/satuan, bukti sheet–baris–kolom; macro tidak dijalankan</td>
+</tr>
+<tr>
+<td>JSON / respons API</td>
+<td>Simpan respons yang diizinkan, validasi skema per adapter, pertahankan versi skema</td>
+</tr>
+<tr>
+<td>TXT / PDF teks</td>
+<td>Ekstraksi teks dan penanda halaman; tabel rumit yang tidak andal masuk review</td>
+</tr>
+<tr>
+<td>PDF scan / gambar</td>
+<td>Tandai membutuhkan OCR; tidak diam-diam dianggap kosong atau sukses</td>
+</tr>
+<tr>
+<td>Format lain</td>
+<td>Arsip saja bila aman dan diizinkan; parser tambahan melalui adapter</td>
+</tr>
+</tbody>
+</table></div>
+<p>Batas pilot usulan: <strong>25 MB per file</strong> dan <strong>100 halaman per PDF</strong>; diputuskan kembali setelah melihat sampel. Arsip ZIP tidak didukung pada MVP. Penerimaan mengembalikan <code>job_id</code> dan status, tidak menahan HTTP sampai seluruh pemrosesan selesai.</p>
+<h3>Alur setiap data masuk</h3>
+<ol>
+<li><strong>Otorisasi dan hak sumber:</strong> tentukan pemilik, ruang akses, penggunaan yang diizinkan, dan kebijakan retensi.</li>
+<li><strong>Pemeriksaan aman:</strong> verifikasi MIME dari isi file, ukuran, malware, dan batas waktu/memori parser. Parser berjalan terisolasi tanpa menjalankan macro/script sumber.</li>
+<li><strong>Akuisisi tercatat:</strong> simpan hasil pengambilan, URL/identitas sumber, waktu, HTTP status bila ada, dan manifest. Simpan raw hanya jika diperbolehkan.</li>
+<li><strong>Hash dan versi:</strong> hitung SHA-256. Byte identik tidak perlu disimpan ulang dalam tenant yang sama; setiap pengambilan tetap punya catatan. Perubahan isi membuat versi baru.</li>
+<li><strong>Parsing dan bukti:</strong> keluarkan teks/tabel dengan referensi halaman atau sel; simpan versi parser dan parameter.</li>
+<li><strong>Normalisasi:</strong> tipe angka, mata uang, unit, kode wilayah, bahasa, tanggal, dan identitas produk. Nilai asli selalu tetap tersedia.</li>
+<li><strong>Ekstraksi:</strong> hasilkan kandidat entitas, klaim, observasi, dan kejadian dengan bukti; data yang tidak jelas masuk review.</li>
+<li><strong>Resolusi entitas:</strong> cocokkan identifier yang andal, lalu alias dan konteks. Nama mirip saja tidak cukup untuk menggabungkan perusahaan.</li>
+<li><strong>Publikasi terkontrol:</strong> indeks dan graph diperbarui sesuai status validasi dan izin. Klaim belum tervalidasi tidak ditampilkan sebagai fakta terkonfirmasi.</li>
+<li><strong>Aturan dan audit:</strong> evaluasi watchlist, buat peringatan tanpa duplikasi, dan catat metode serta bukti yang digunakan.</li>
+</ol>
+<p><strong>Ketahanan:</strong> worker boleh menerima tugas lebih dari sekali. Efek bisnis harus idempoten melalui unique constraint, kunci pekerjaan, checkpoint, dan transaksi. Tidak ada janji “exactly once” hanya karena memakai queue. Gunakan outbox, retry dengan backoff dan jitter, <code>Retry-After</code>, timeout, circuit breaker, serta tabel <code>failed_jobs</code> sebagai antrean gagal logis. Scheduler tunggal atau terkoordinasi; pekerjaan tertinggal dapat direkonsiliasi dari database.</p>
+<p>Penyimpanan objek dan transaksi database tidak atomik bersama: unggah ke objek sementara, verifikasi hash, finalisasi manifest melalui transaksi, lalu rekonsiliasi objek yatim dan status tertunda. Reproses membuat versi hasil baru; tidak menghilangkan hasil lama yang masih berlaku menurut retensi.</p>
+</section><section class="doc-section" id="s05"><h2><span class="section-no">05</span>Katalog sumber eksternal</h2>
+<p><strong>Hasil pemeriksaan dokumentasi, bukan integrasi yang sudah berjalan.</strong> Jadwal di bawah adalah usulan polling kita, bukan jaminan kecepatan pembaruan penerbit. Ketentuan dan akses perlu diverifikasi lagi ketika adapter diaktifkan.</p>
+<div aria-label="Tabel rincian teknis; dapat digeser horizontal" class="table-wrap" role="region" tabindex="0"><table>
+<thead>
+<tr>
+<th>Prioritas / sumber</th>
+<th>Data dan akses yang diketahui</th>
+<th>Rencana penggunaan / batas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MVP · World Bank Pink Sheet</td>
+<td>Portal menyediakan data harga bulanan dalam spreadsheet; publikasi memuat seri Rubber RSS3 dan TSR20. <a class="citation" href="https://www.worldbank.org/en/research/commodity-markets" rel="noopener noreferrer" target="_blank">[3]</a> <a class="citation" href="https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Pink-Sheet-June-2026.pdf" rel="noopener noreferrer" target="_blank">[1]</a></td>
+<td>Cek pembaruan harian secara ringan; impor hanya saat versi berubah. Simpan periode dan definisi seri. <strong>Bukan harga spot lokal atau feed intraday.</strong> Periksa ketentuan dataset dan atribusi.</td>
+</tr>
+<tr>
+<td>MVP · BMKG Data Terbuka</td>
+<td>API JSON prakiraan desa/kelurahan: horizon 3 hari, interval 3 jam, pembaruan 2 kali sehari. Dokumentasi menyebut 60 permintaan/menit/IP dan kewajiban atribusi BMKG. <a class="citation" href="https://data.bmkg.go.id/prakiraan-cuaca/" rel="noopener noreferrer" target="_blank">[1]</a></td>
+<td>Poll misalnya tiap 12 jam untuk daftar lokasi pilot, memakai batas lebih konservatif dari kuota. Simpan waktu terbit dan waktu berlaku. <strong>Prakiraan bukan bukti kejadian banjir atau kerusakan kebun.</strong></td>
+</tr>
+<tr>
+<td>MVP · GDELT + feed berita yang disetujui</td>
+<td>DOC API mendukung penemuan berita. Dokumentasi historis menunjukkan perubahan horizon dan perbedaan perilaku mode pencarian. <a class="citation" href="https://blog.gdeltproject.org/gdelt-doc-2-0-api-debuts/" rel="noopener noreferrer" target="_blank">[1]</a> <a class="citation" href="https://blog.gdeltproject.org/doc-2-0-updates-1-5-year-searching-and-updated-mobile-interface/" rel="noopener noreferrer" target="_blank">[3]</a></td>
+<td>Poll usulan 30–60 menit; simpan metadata/tautan yang diizinkan. Uji jendela pencarian, batas hasil dan kemampuan bahasa pada layanan saat ini. Penemuan URL <strong>tidak memberikan hak mengarsipkan seluruh artikel</strong>.</td>
+</tr>
+<tr>
+<td>Fase 2 · BPS</td>
+<td>WebAPI menyediakan JSON untuk berbagai data/tabel/publikasi dan menggunakan key token. <a class="citation" href="https://webapi.bps.go.id/documentation/" rel="noopener noreferrer" target="_blank">[1]</a></td>
+<td>Pilih dataset karet/produksi/perdagangan melalui katalog resmi; petakan ID tabel, variabel, satuan dan periode yang benar. Jangan menganggap seluruh isi PDF tersedia sebagai tabel API.</td>
+</tr>
+<tr>
+<td>Fase 2 · UN Comtrade</td>
+<td>Tersedia preview terbatas dan API dengan subscription key; akses endpoint bergantung tingkat langganan. <a class="citation" href="https://uncomtrade.org/docs/un-comtrade-api/" rel="noopener noreferrer" target="_blank">[2]</a></td>
+<td>Data perdagangan menurut reporter, partner, arus, periode, dan versi HS. Pilih subkode yang sesuai untuk karet alam. Sinkronisasi berdasarkan ketersediaan rilis, kuota, dan revisi; data kosong tidak otomatis nol.</td>
+</tr>
+<tr>
+<td>Fase 2 · SGX / vendor berizin</td>
+<td>Dokumen kebijakan SGX 2020 mengatur pemakaian non-display dan redistribusi data pasar. Ini referensi kewaspadaan lisensi, <strong>bukan konfirmasi tarif atau ketentuan terbaru</strong>. <a class="citation" href="https://www.datadirect.sgx.com/Portals/0/Documents/Market-Data-Policy/SGX%20Market%20Data%20Policy_1%20July%202020.pdf?ver=3VcRAqOoXvJSKwL8glUf_w%3D%3D" rel="noopener noreferrer" target="_blank">[2]</a></td>
+<td>Feed harga hanya setelah hak display, penyimpanan, analitik/AI dan redistribusi dikonfirmasi dengan penyedia. Tidak mengganti lisensi dengan scraping halaman.</td>
+</tr>
+<tr>
+<td>Kandidat fase 2 · kurs, regulasi, dan laporan industri</td>
+<td>Belum ditetapkan adapter maupun kontrak datanya dalam blueprint ini.</td>
+<td>Pilih sumber resmi/berizin. Sementara gunakan impor manual yang sah. Tanggal penerbitan, tanggal berlaku, versi, dan hak penggunaan harus dipetakan terpisah.</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Isi minimal satu entri sumber</h3>
+<p><code>source_id</code>, pemilik/penerbit, tipe adapter, domain/endpoint yang diizinkan, cakupan topik/wilayah, metode autentikasi, referensi secret, jadwal, kuota, cursor, versi skema, atribusi, URL/dokumen syarat penggunaan, tanggal review, dan penanggung jawab.</p>
+<p>Hak dipisah menjadi <strong>boleh mengambil, menyimpan raw, mengekstrak, mengirim ke penyedia model, menampilkan, dan mendistribusikan ulang</strong>. Semua ditolak secara default sampai kebijakan sumber menyetujui. Sumber “hanya metadata” tetap bermanfaat di galaksi; jangan mengarsipkan body artikel secara diam-diam.</p>
+</section><section class="doc-section" id="s06"><h2><span class="section-no">06</span>Cara sistem melacak sendiri data eksternal</h2>
+<p>Otomatisasi dibagi dua, agar tidak berubah menjadi crawler tanpa batas.</p>
+<h3>A. Koleksi terjadwal dari sumber yang disetujui</h3>
+<ul>
+<li>Scheduler menjalankan adapter sesuai katalog sumber dan daftar lokasi/topik yang aktif.</li>
+<li>Gunakan cursor/watermark dengan overlap untuk dokumen terlambat; deduplikasi menangani pengulangan.</li>
+<li>Gunakan ETag/Last-Modified jika didukung; deteksi perubahan berdasarkan hash.</li>
+<li>Pecah rentang waktu/query jika hasil mencapai batas layanan; catat jika hasil berpotensi terpotong. Jangan menyebutnya arsip lengkap jika provider membatasi hasil.</li>
+<li>Jika gagal, indikator menampilkan <strong>sumber terlambat/gagal</strong>, bukan “tidak ada kejadian”.</li>
+</ul>
+<h3>B. Penemuan sumber dan topik baru yang dibatasi</h3>
+<ol>
+<li>Mulai dari kosakata kurasi: karet alam, natural rubber, Hevea, latex, bokar, RSS, TSR, SIR, dan nama entitas yang telah disetujui.</li>
+<li>Susun query berkonteks. “Rubber” atau “latex” sendirian terlalu luas; gabungkan dengan istilah komoditas, wilayah atau rantai pasok dan uji precision/recall.</li>
+<li>Panggil layanan pencarian/feed melalui adapter dan anggaran harian yang ditetapkan. Tool pencarian dalam percakapan ini <strong>bukan</strong> infrastruktur kolektor produksi.</li>
+<li>Nilai relevansi, bahasa, penerbit, kebaruan, dan duplikasi; simpan kandidat beserta alasan penemuannya.</li>
+<li>Domain baru masuk <strong>antrean persetujuan</strong>: verifikasi penerbit, ketentuan, akses, keamanan, serta cara penyimpanan. Relevansi tinggi tidak sama dengan izin akses.</li>
+<li>Setelah disetujui, lakukan dry-run adapter, aktifkan jadwal, lalu pantau kualitas dan kegagalannya.</li>
+</ol>
+<p>Entitas baru dapat diusulkan sebagai watchlist, tetapi tidak otomatis memperluas crawling tanpa batas. Terapkan batas domain, kedalaman, ukuran respons, jumlah query, biaya, dan waktu. Patuhi ketentuan layanan dan robots bila relevan; robots bukan pengganti hak penggunaan. Tidak menembus login, CAPTCHA, paywall, atau pembatasan akses.</p>
+</section><section class="doc-section" id="s07"><h2><span class="section-no">07</span>Ontologi karet alam dan aturan normalisasi</h2>
+<h3>Entitas inti</h3>
+<ul>
+<li><strong>Organisasi:</strong> pemasok, koperasi, pengolah, eksportir, pembeli, asosiasi, dan penerbit. “Pemasok” adalah peran organisasi, bukan identitas yang berbeda untuk perusahaan yang sama.</li>
+<li><strong>Fasilitas dan lahan:</strong> kebun/plot, titik pengumpulan, pabrik, gudang, dan simpul logistik.</li>
+<li><strong>Lokasi:</strong> negara, wilayah administratif, titik/poligon; setiap kode memiliki namespace dan versi. Kode BPS dan kode administrasi sumber lain tidak boleh diasumsikan sama.</li>
+<li><strong>Material/produk:</strong> lateks, bahan olah karet rakyat, sheet, dan karet spesifikasi teknis. Bentuk, grade, standar, serta versi standar dipisahkan; label SIR/TSR tidak diperlakukan sebagai satu grade tunggal.</li>
+<li><strong>Dokumen, observasi, dan kejadian:</strong> dokumen adalah bukti; observasi adalah nilai/pernyataan terukur atau dilaporkan; kejadian adalah sesuatu yang dinyatakan terjadi. Sinyal risiko adalah hasil analisis terpisah.</li>
+</ul>
+<p>Relasi awal: <code>located_in</code>, <code>operates</code>, <code>supplies_to</code>, <code>produces</code>, <code>mentions</code>, <code>reported_by</code>, dan <code>potentially_exposed_to</code>. Relasi pasokan hanya diterbitkan bila ada bukti yang memadai; sekadar disebut dalam berita yang sama tidak membuktikan transaksi.</p>
+<h3>Harga dan kuantitas tidak boleh disamakan begitu saja</h3>
+<p>Setiap observasi harga memerlukan nilai decimal, mata uang, unit, material/bentuk/grade, basis berat basah/kering/produk, jenis harga, pasar/lokasi, periode/waktu, sumber, dan versi. Tambahkan spot/futures/benchmark/transaksi internal, bulan kontrak, incoterm, pajak dan ongkos jika relevan. Field yang tidak diketahui adalah <code>null</code> dengan alasan, bukan ditebak AI.</p>
+<ul>
+<li>Bedakan IDR/kg bahan basah, IDR/kg karet kering, USD/kg produk, dan US cents/kg.</li>
+<li>Bedakan harga rata-rata bulanan, settlement kontrak tertentu, penawaran pemasok, dan transaksi aktual.</li>
+<li>Konversi mata uang harus menunjuk observasi kurs bertanggal beserta kebijakan tanggal yang dipakai; jangan mengubah nilai asli.</li>
+<li>Kadar Karet Kering (<strong>KKK/DRC</strong>) harus memiliki metode, waktu, sumber, dan unit persentase/fraksi yang jelas.</li>
+</ul>
+<p><strong>Contoh simulasi, bukan harga pasar:</strong> 1.000 kg bahan pada KKK 60% setara 600 kg kandungan karet kering. Harga Rp15.000/kg basah setara Rp25.000/kg kandungan karet kering melalui <code>15.000 / 0,60</code>. Ini hanya konversi basis sederhana; bukan biaya produksi akhir dan bukan otomatis setara mutu atau harga kontrak TSR20. Jika KKK tidak diketahui atau tidak valid, konversi ditahan.</p>
+<p>Untuk perdagangan, simpan versi klasifikasi dan subkode komoditas yang relevan; jangan mengambil seluruh Bab 40 sebagai bahan baku karet alam. Nilai perdagangan dibagi berat menghasilkan <strong>unit value</strong>, bukan otomatis harga pasar yang sebanding.</p>
+</section><section class="doc-section" id="s08"><h2><span class="section-no">08</span>Model data logis</h2>
+<p>Nama berikut adalah rancangan tabel/domain, <strong>belum migration produksi</strong>. Seluruh objek bisnis berada dalam lingkup organisasi; foreign key dan unique constraint harus menjaga lingkup yang sama.</p>
+<div aria-label="Tabel rincian teknis; dapat digeser horizontal" class="table-wrap" role="region" tabindex="0"><table>
+<thead>
+<tr>
+<th>Kelompok / tabel</th>
+<th>Isi penting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tenants</code>, <code>users</code>, <code>memberships</code></td>
+<td>Organisasi, identitas, peran, status keanggotaan</td>
+</tr>
+<tr>
+<td><code>sources</code>, <code>source_policies</code></td>
+<td>Adapter, cakupan, jadwal, hak per penggunaan, atribusi, versi kebijakan</td>
+</tr>
+<tr>
+<td><code>collection_runs</code>, <code>jobs</code>, <code>outbox</code>, <code>failed_jobs</code></td>
+<td>Percobaan koleksi, cursor, idempotency key, antrean durabel, hasil dan kegagalan</td>
+</tr>
+<tr>
+<td><code>acquisitions</code>, <code>raw_assets</code></td>
+<td>Setiap pengambilan/unggahan, status, hash, lokasi objek privat, MIME, ukuran, dasar retensi</td>
+</tr>
+<tr>
+<td><code>documents</code>, <code>document_versions</code>, <code>extraction_runs</code></td>
+<td>Identitas dokumen, versi isi, bahasa, hasil/versi parser atau model</td>
+</tr>
+<tr>
+<td><code>evidence_fragments</code></td>
+<td>Potongan bukti: halaman/offset/bounding box atau sheet–baris–kolom, versi dokumen dan hak akses</td>
+</tr>
+<tr>
+<td><code>entities</code>, <code>entity_identifiers</code>, <code>entity_aliases</code></td>
+<td>Identitas kanonis, ID eksternal beserta namespace, alias berkonteks</td>
+</tr>
+<tr>
+<td><code>entity_merge_log</code></td>
+<td>Riwayat penggabungan/pemisahan; dapat ditinjau dan dibatalkan</td>
+</tr>
+<tr>
+<td><code>claims</code>, <code>claim_evidence</code></td>
+<td>Subjek–predikat–objek atau nilai bertipe, status review, atribusi, waktu berlaku dan waktu pencatatan; bukti many-to-many</td>
+</tr>
+<tr>
+<td><code>material_specs</code>, <code>price_observations</code></td>
+<td>Bentuk/grade/standar, nilai harga, basis berat, mata uang, kontrak, periode dan bukti</td>
+</tr>
+<tr>
+<td><code>weather_observations</code></td>
+<td>Lokasi, jenis forecast/observed, waktu terbit, waktu berlaku, variabel dan bukti</td>
+</tr>
+<tr>
+<td><code>trade_observations</code></td>
+<td>Fase 2: reporter, partner, arus, HS/version, periode, berat, nilai dan revisi</td>
+</tr>
+<tr>
+<td><code>events</code>, <code>event_entities</code>, <code>event_evidence</code></td>
+<td>Kejadian, status, rentang waktu, peran entitas, bukti lintas dokumen</td>
+</tr>
+<tr>
+<td><code>risk_signals</code></td>
+<td>Kesimpulan turunan yang masih bersifat potensi; rule/model version, input, alasan, keterbatasan</td>
+</tr>
+<tr>
+<td><code>watchlists</code>, <code>alert_rules</code>, <code>alerts</code>, <code>alert_deliveries</code></td>
+<td>Ruang pantau, versi aturan, deduplikasi, acknowledge, tujuan pengiriman</td>
+</tr>
+<tr>
+<td><code>review_tasks</code>, <code>audit_log</code></td>
+<td>Masalah kualitas, keputusan manusia, perubahan kebijakan, akses dan tindakan penting</td>
+</tr>
+<tr>
+<td><code>lots</code>, <code>movements</code>, <code>quality_tests</code></td>
+<td>Fase 2: lot fisik, asal-usul, pergerakan, hasil uji; terpisah dari observasi berita/harga</td>
+</tr>
+</tbody>
+</table></div>
+<pre><code class="language-text">Source -&gt; CollectionRun -&gt; Acquisition -&gt; RawAsset
+                                      -&gt; DocumentVersion -&gt; EvidenceFragment
+Entity &lt;- Claim -&gt; Entity / TypedValue       ^                 |
+              \-----------------------------+-----------------+
+Event &lt;-&gt; EventEntity &lt;-&gt; Entity ; Event &lt;-&gt; EventEvidence
+RiskSignal -&gt; input observasi/klaim + versi aturan -&gt; Alert
+</code></pre>
+<p>Graph bukan tabel bayangan tanpa bukti: edge adalah proyeksi klaim yang memenuhi aturan status dan hak akses. Satu klaim/kejadian dapat memiliki banyak bukti, termasuk bukti yang bertentangan. Tabel khusus observasi menyimpan nilai bertipe, sementara klaim menjadi penghubung pengetahuan; hindari menaruh semua angka penting dalam JSON bebas.</p>
+<p>Kunci deduplikasi dibedakan: hash byte untuk aset, identitas sumber+versi untuk dokumen, key bisnis+periode+versi rilis untuk observasi, dan tanda tangan aturan+entitas+rentang kejadian untuk alert. Koreksi sumber menghasilkan revisi, bukan data baru yang tanpa sengaja dihitung dua kali.</p>
+</section><section class="doc-section" id="s09"><h2><span class="section-no">09</span>Waktu, kualitas, dan kebenaran</h2>
+<h3>Empat waktu yang berbeda</h3>
+<ul>
+<li><strong>Waktu kejadian/periode observasi:</strong> kapan hal terjadi atau periode nilai itu berlaku.</li>
+<li><strong>Waktu publikasi/terbit:</strong> kapan penerbit mengeluarkan dokumen; untuk prakiraan, simpan <code>issued_at</code> dan <code>valid_at</code> secara terpisah.</li>
+<li><strong>Waktu akuisisi:</strong> kapan sistem benar-benar memperoleh data.</li>
+<li><strong>Waktu sistem/riwayat:</strong> kapan klaim/revisi direkam, digantikan, disetujui atau ditarik. Simpan interval waktu berlaku dan interval waktu pencatatan agar dapat menjawab “apa yang kita ketahui saat itu?”.</li>
+</ul>
+<p>Simpan timestamp berzona/UTC dan zona asli bila tersedia; UI dapat memakai Asia/Jakarta. Tanggal tanpa jam tetap bertipe tanggal dengan presisi yang diketahui—jangan menciptakan jam kejadian. Data terlambat tidak dipindahkan ke tanggal pengambilan hanya agar terlihat baru.</p>
+<h3>Pisahkan status yang sering tercampur</h3>
+<ul>
+<li><strong>Relevansi:</strong> seberapa terkait dengan topik karet.</li>
+<li><strong>Keandalan ekstraksi:</strong> seberapa baik teks/nilai dibaca, bila metriknya tersedia dan telah diuji.</li>
+<li><strong>Status klaim:</strong> diekstrak, tervalidasi aturan, ditinjau manusia, diperselisihkan, digantikan, atau ditarik.</li>
+<li><strong>Jenis informasi:</strong> prakiraan, pengukuran, laporan sumber, atau hasil turunan.</li>
+</ul>
+<p>Skor model tidak boleh diberi label “persentase kebenaran”. Tiga media yang menyalin siaran pers yang sama bukan tiga konfirmasi independen. Sistem mempertahankan klaim yang berbeda dengan sumbernya; tidak memilih nilai yang paling sering disalin secara otomatis.</p>
+<p>Antrean review memprioritaskan harga tanpa unit, KKK tidak valid, tanggal ambigu, konflik identifier, perubahan skema, dan klaim berisiko tinggi. Koreksi manusia berversi dan diaudit. Bila bukti tidak cukup, keluaran yang sah adalah <strong>belum diketahui</strong>.</p>
+</section><section class="doc-section" id="s10"><h2><span class="section-no">10</span>Galaksi sebagai antarmuka pengetahuan</h2>
+<figure class="diagram galaxy"><div class="diagram-scroll"><svg aria-labelledby="galaxy-title galaxy-desc" role="img" viewbox="0 0 1200 550" xmlns="http://www.w3.org/2000/svg">
+<title id="galaxy-title">Galaksi informasi karet alam, ilustrasi skematis</title>
+<desc id="galaxy-desc">Enam gugus topik terhubung dengan konsep karet alam. Ini ilustrasi desain, bukan visualisasi data nyata.</desc>
+<defs>
+<radialgradient id="galaxy-nebula"><stop offset="0" stop-color="#454080" stop-opacity=".38"></stop><stop offset=".6" stop-color="#1c3760" stop-opacity=".16"></stop><stop offset="1" stop-color="#101c30" stop-opacity="0"></stop></radialgradient>
+<radialgradient id="galaxy-core"><stop stop-color="#4fe6bc" stop-opacity=".25"></stop><stop offset="1" stop-color="#4fe6bc" stop-opacity="0"></stop></radialgradient>
+</defs>
+<rect fill="#101b2e" height="550" rx="20" width="1200"></rect><ellipse cx="598" cy="268" fill="url(#galaxy-nebula)" rx="588.0" ry="253.0" transform="rotate(-16 598 268)"></ellipse><circle cx="470" cy="36" fill="#c2d4ee" opacity="0.32" r="1.2"></circle><circle cx="178" cy="121" fill="#c2d4ee" opacity="0.43" r="0.8"></circle><circle cx="686" cy="28" fill="#c2d4ee" opacity="0.55" r="1.2"></circle><circle cx="424" cy="147" fill="#c2d4ee" opacity="0.31" r="1.2"></circle><circle cx="679" cy="487" fill="#c2d4ee" opacity="0.48" r="1.5"></circle><circle cx="59" cy="219" fill="#c2d4ee" opacity="0.27" r="1.0"></circle><circle cx="569" cy="180" fill="#c2d4ee" opacity="0.14" r="1.2"></circle><circle cx="828" cy="447" fill="#c2d4ee" opacity="0.31" r="1.0"></circle><circle cx="285" cy="235" fill="#c2d4ee" opacity="0.15" r="1.0"></circle><circle cx="134" cy="333" fill="#c2d4ee" opacity="0.14" r="1.0"></circle><circle cx="965" cy="64" fill="#c2d4ee" opacity="0.13" r="0.7"></circle><circle cx="1070" cy="385" fill="#c2d4ee" opacity="0.49" r="0.8"></circle><circle cx="840" cy="349" fill="#c2d4ee" opacity="0.25" r="1.0"></circle><circle cx="519" cy="124" fill="#c2d4ee" opacity="0.21" r="0.8"></circle><circle cx="1071" cy="422" fill="#c2d4ee" opacity="0.18" r="1.2"></circle><circle cx="705" cy="263" fill="#c2d4ee" opacity="0.45" r="1.5"></circle><circle cx="956" cy="439" fill="#c2d4ee" opacity="0.43" r="0.8"></circle><circle cx="574" cy="377" fill="#c2d4ee" opacity="0.21" r="1.2"></circle><circle cx="798" cy="466" fill="#c2d4ee" opacity="0.51" r="1.2"></circle><circle cx="224" cy="98" fill="#c2d4ee" opacity="0.44" r="1.0"></circle><circle cx="208" cy="146" fill="#c2d4ee" opacity="0.27" r="1.2"></circle><circle cx="203" cy="464" fill="#c2d4ee" opacity="0.39" r="1.2"></circle><circle cx="432" cy="142" fill="#c2d4ee" opacity="0.44" r="1.0"></circle><circle cx="156" cy="510" fill="#c2d4ee" opacity="0.25" r="0.7"></circle><circle cx="493" cy="104" fill="#c2d4ee" opacity="0.26" r="0.8"></circle><circle cx="638" cy="340" fill="#c2d4ee" opacity="0.39" r="1.2"></circle><circle cx="311" cy="381" fill="#c2d4ee" opacity="0.55" r="0.8"></circle><circle cx="476" cy="94" fill="#c2d4ee" opacity="0.19" r="1.5"></circle><circle cx="855" cy="493" fill="#c2d4ee" opacity="0.52" r="1.0"></circle><circle cx="735" cy="324" fill="#c2d4ee" opacity="0.23" r="1.2"></circle><circle cx="353" cy="160" fill="#c2d4ee" opacity="0.29" r="0.7"></circle><circle cx="664" cy="236" fill="#c2d4ee" opacity="0.41" r="0.7"></circle><circle cx="191" cy="531" fill="#c2d4ee" opacity="0.39" r="0.7"></circle><circle cx="178" cy="143" fill="#c2d4ee" opacity="0.15" r="0.8"></circle><circle cx="1050" cy="74" fill="#c2d4ee" opacity="0.51" r="1.5"></circle><circle cx="659" cy="472" fill="#c2d4ee" opacity="0.51" r="0.8"></circle><circle cx="80" cy="102" fill="#c2d4ee" opacity="0.55" r="1.2"></circle><circle cx="105" cy="369" fill="#c2d4ee" opacity="0.36" r="1.0"></circle><circle cx="840" cy="195" fill="#c2d4ee" opacity="0.32" r="1.2"></circle><circle cx="643" cy="121" fill="#c2d4ee" opacity="0.56" r="1.5"></circle><circle cx="851" cy="269" fill="#c2d4ee" opacity="0.14" r="1.2"></circle><circle cx="607" cy="362" fill="#c2d4ee" opacity="0.18" r="1.5"></circle><circle cx="176" cy="465" fill="#c2d4ee" opacity="0.35" r="1.0"></circle><circle cx="244" cy="18" fill="#c2d4ee" opacity="0.15" r="0.7"></circle><circle cx="98" cy="209" fill="#c2d4ee" opacity="0.42" r="1.5"></circle><circle cx="178" cy="478" fill="#c2d4ee" opacity="0.14" r="1.5"></circle><circle cx="824" cy="105" fill="#c2d4ee" opacity="0.39" r="1.0"></circle><circle cx="1090" cy="273" fill="#c2d4ee" opacity="0.25" r="0.7"></circle><circle cx="1055" cy="413" fill="#c2d4ee" opacity="0.34" r="1.0"></circle><circle cx="410" cy="524" fill="#c2d4ee" opacity="0.45" r="0.7"></circle><circle cx="634" cy="32" fill="#c2d4ee" opacity="0.55" r="1.0"></circle><circle cx="650" cy="48" fill="#c2d4ee" opacity="0.31" r="1.2"></circle><circle cx="139" cy="258" fill="#c2d4ee" opacity="0.32" r="0.8"></circle><circle cx="208" cy="89" fill="#c2d4ee" opacity="0.41" r="1.0"></circle><circle cx="409" cy="64" fill="#c2d4ee" opacity="0.13" r="0.8"></circle><circle cx="277" cy="49" fill="#c2d4ee" opacity="0.26" r="0.7"></circle><circle cx="1110" cy="483" fill="#c2d4ee" opacity="0.50" r="0.7"></circle><circle cx="533" cy="339" fill="#c2d4ee" opacity="0.18" r="1.2"></circle><circle cx="486" cy="399" fill="#c2d4ee" opacity="0.36" r="1.0"></circle><circle cx="691" cy="467" fill="#c2d4ee" opacity="0.23" r="1.0"></circle><circle cx="1015" cy="402" fill="#c2d4ee" opacity="0.23" r="1.0"></circle><circle cx="116" cy="406" fill="#c2d4ee" opacity="0.28" r="1.2"></circle><circle cx="19" cy="351" fill="#c2d4ee" opacity="0.32" r="1.5"></circle><circle cx="554" cy="261" fill="#c2d4ee" opacity="0.39" r="0.8"></circle><circle cx="1055" cy="382" fill="#c2d4ee" opacity="0.32" r="1.5"></circle><circle cx="726" cy="320" fill="#c2d4ee" opacity="0.33" r="1.0"></circle><circle cx="180" cy="458" fill="#c2d4ee" opacity="0.46" r="1.2"></circle><circle cx="1153" cy="289" fill="#c2d4ee" opacity="0.30" r="0.7"></circle><circle cx="752" cy="189" fill="#c2d4ee" opacity="0.42" r="1.5"></circle><circle cx="193" cy="292" fill="#c2d4ee" opacity="0.46" r="0.7"></circle><circle cx="525" cy="410" fill="#c2d4ee" opacity="0.46" r="1.0"></circle><circle cx="812" cy="206" fill="#c2d4ee" opacity="0.23" r="0.7"></circle><circle cx="1088" cy="379" fill="#c2d4ee" opacity="0.21" r="0.8"></circle><circle cx="1180" cy="153" fill="#c2d4ee" opacity="0.34" r="0.8"></circle><circle cx="304" cy="80" fill="#c2d4ee" opacity="0.54" r="0.7"></circle><circle cx="1039" cy="442" fill="#c2d4ee" opacity="0.19" r="0.8"></circle><circle cx="97" cy="280" fill="#c2d4ee" opacity="0.30" r="1.0"></circle><circle cx="1056" cy="266" fill="#c2d4ee" opacity="0.41" r="1.5"></circle><circle cx="888" cy="197" fill="#c2d4ee" opacity="0.50" r="0.8"></circle><circle cx="787" cy="405" fill="#c2d4ee" opacity="0.56" r="1.5"></circle><circle cx="58" cy="236" fill="#c2d4ee" opacity="0.43" r="1.0"></circle><circle cx="608" cy="56" fill="#c2d4ee" opacity="0.22" r="1.2"></circle><circle cx="923" cy="113" fill="#c2d4ee" opacity="0.51" r="1.5"></circle><circle cx="89" cy="74" fill="#c2d4ee" opacity="0.15" r="1.5"></circle><circle cx="749" cy="443" fill="#c2d4ee" opacity="0.46" r="1.5"></circle><circle cx="915" cy="525" fill="#c2d4ee" opacity="0.45" r="0.7"></circle><circle cx="929" cy="442" fill="#c2d4ee" opacity="0.54" r="1.2"></circle><circle cx="809" cy="442" fill="#c2d4ee" opacity="0.27" r="1.0"></circle><circle cx="973" cy="389" fill="#c2d4ee" opacity="0.30" r="1.5"></circle><circle cx="125" cy="404" fill="#c2d4ee" opacity="0.31" r="1.0"></circle><circle cx="169" cy="173" fill="#c2d4ee" opacity="0.51" r="0.8"></circle><circle cx="579" cy="478" fill="#c2d4ee" opacity="0.19" r="1.2"></circle><circle cx="64" cy="487" fill="#c2d4ee" opacity="0.20" r="1.2"></circle><circle cx="1022" cy="410" fill="#c2d4ee" opacity="0.50" r="1.0"></circle><circle cx="813" cy="128" fill="#c2d4ee" opacity="0.41" r="1.0"></circle><circle cx="542" cy="368" fill="#c2d4ee" opacity="0.17" r="1.0"></circle><circle cx="252" cy="451" fill="#c2d4ee" opacity="0.30" r="0.8"></circle><circle cx="233" cy="71" fill="#c2d4ee" opacity="0.14" r="1.5"></circle><circle cx="445" cy="87" fill="#c2d4ee" opacity="0.47" r="0.7"></circle><circle cx="475" cy="287" fill="#c2d4ee" opacity="0.36" r="1.0"></circle><circle cx="1036" cy="405" fill="#c2d4ee" opacity="0.20" r="1.0"></circle><circle cx="878" cy="372" fill="#c2d4ee" opacity="0.16" r="0.8"></circle><circle cx="91" cy="234" fill="#c2d4ee" opacity="0.30" r="0.7"></circle><circle cx="188" cy="184" fill="#c2d4ee" opacity="0.46" r="0.8"></circle><circle cx="624" cy="327" fill="#c2d4ee" opacity="0.34" r="1.0"></circle><circle cx="873" cy="448" fill="#c2d4ee" opacity="0.49" r="1.0"></circle><circle cx="404" cy="324" fill="#c2d4ee" opacity="0.39" r="1.0"></circle><circle cx="196" cy="165" fill="#c2d4ee" opacity="0.26" r="0.8"></circle><circle cx="461" cy="351" fill="#c2d4ee" opacity="0.41" r="0.8"></circle><circle cx="1170" cy="89" fill="#c2d4ee" opacity="0.41" r="0.7"></circle><circle cx="1038" cy="127" fill="#c2d4ee" opacity="0.48" r="1.5"></circle><circle cx="599" cy="427" fill="#c2d4ee" opacity="0.44" r="0.8"></circle><circle cx="379" cy="448" fill="#c2d4ee" opacity="0.44" r="1.0"></circle><circle cx="173" cy="141" fill="#c2d4ee" opacity="0.54" r="1.2"></circle><circle cx="480" cy="58" fill="#c2d4ee" opacity="0.35" r="0.7"></circle><circle cx="1103" cy="464" fill="#c2d4ee" opacity="0.37" r="1.5"></circle><circle cx="62" cy="294" fill="#c2d4ee" opacity="0.37" r="1.0"></circle><circle cx="421" cy="83" fill="#c2d4ee" opacity="0.30" r="1.2"></circle><circle cx="314" cy="227" fill="#c2d4ee" opacity="0.51" r="0.7"></circle><circle cx="61" cy="295" fill="#c2d4ee" opacity="0.52" r="1.0"></circle><circle cx="350" cy="251" fill="#c2d4ee" opacity="0.49" r="0.8"></circle><circle cx="965" cy="143" fill="#c2d4ee" opacity="0.51" r="1.2"></circle><circle cx="480" cy="376" fill="#c2d4ee" opacity="0.28" r="1.0"></circle><circle cx="763" cy="30" fill="#c2d4ee" opacity="0.41" r="0.7"></circle><circle cx="243" cy="339" fill="#c2d4ee" opacity="0.39" r="1.5"></circle><circle cx="205" cy="106" fill="#c2d4ee" opacity="0.54" r="0.7"></circle><circle cx="1075" cy="99" fill="#c2d4ee" opacity="0.37" r="1.5"></circle><circle cx="58" cy="259" fill="#c2d4ee" opacity="0.48" r="0.7"></circle><circle cx="1166" cy="228" fill="#c2d4ee" opacity="0.50" r="1.5"></circle><circle cx="62" cy="162" fill="#c2d4ee" opacity="0.46" r="0.7"></circle><circle cx="724" cy="448" fill="#c2d4ee" opacity="0.30" r="0.8"></circle><circle cx="85" cy="528" fill="#c2d4ee" opacity="0.25" r="0.7"></circle><circle cx="77" cy="252" fill="#c2d4ee" opacity="0.18" r="1.2"></circle><circle cx="502" cy="399" fill="#c2d4ee" opacity="0.16" r="1.5"></circle><circle cx="526" cy="472" fill="#c2d4ee" opacity="0.15" r="0.7"></circle><circle cx="374" cy="49" fill="#c2d4ee" opacity="0.43" r="1.0"></circle><circle cx="957" cy="408" fill="#c2d4ee" opacity="0.25" r="1.5"></circle><circle cx="746" cy="497" fill="#c2d4ee" opacity="0.51" r="1.0"></circle><circle cx="212" cy="176" fill="#c2d4ee" opacity="0.15" r="1.5"></circle><circle cx="211" cy="55" fill="#c2d4ee" opacity="0.18" r="1.5"></circle><circle cx="86" cy="334" fill="#c2d4ee" opacity="0.24" r="1.5"></circle><circle cx="594" cy="520" fill="#c2d4ee" opacity="0.49" r="0.8"></circle><circle cx="815" cy="365" fill="#c2d4ee" opacity="0.55" r="0.7"></circle><circle cx="250" cy="64" fill="#c2d4ee" opacity="0.34" r="1.2"></circle><circle cx="1168" cy="102" fill="#c2d4ee" opacity="0.54" r="1.2"></circle><circle cx="376" cy="406" fill="#c2d4ee" opacity="0.55" r="0.7"></circle><circle cx="207" cy="50" fill="#c2d4ee" opacity="0.31" r="0.7"></circle><circle cx="105" cy="226" fill="#c2d4ee" opacity="0.19" r="1.2"></circle><circle cx="653" cy="197" fill="#c2d4ee" opacity="0.53" r="0.7"></circle><circle cx="745" cy="357" fill="#c2d4ee" opacity="0.39" r="0.8"></circle><circle cx="931" cy="431" fill="#c2d4ee" opacity="0.54" r="1.5"></circle><circle cx="243" cy="431" fill="#c2d4ee" opacity="0.20" r="1.5"></circle><circle cx="565" cy="271" fill="#c2d4ee" opacity="0.13" r="1.2"></circle><circle cx="1082" cy="194" fill="#c2d4ee" opacity="0.52" r="1.0"></circle><circle cx="1044" cy="359" fill="#c2d4ee" opacity="0.54" r="0.7"></circle><circle cx="766" cy="356" fill="#c2d4ee" opacity="0.44" r="1.0"></circle><circle cx="404" cy="330" fill="#c2d4ee" opacity="0.52" r="0.7"></circle><circle cx="338" cy="198" fill="#c2d4ee" opacity="0.55" r="0.7"></circle><circle cx="576" cy="262" fill="#c2d4ee" opacity="0.14" r="0.7"></circle><circle cx="355" cy="51" fill="#c2d4ee" opacity="0.33" r="0.8"></circle><circle cx="622" cy="394" fill="#c2d4ee" opacity="0.50" r="0.8"></circle><circle cx="501" cy="435" fill="#c2d4ee" opacity="0.23" r="0.7"></circle><circle cx="1055" cy="467" fill="#c2d4ee" opacity="0.26" r="0.8"></circle><circle cx="618" cy="366" fill="#c2d4ee" opacity="0.32" r="0.8"></circle><circle cx="491" cy="95" fill="#c2d4ee" opacity="0.35" r="1.5"></circle><circle cx="637" cy="438" fill="#c2d4ee" opacity="0.39" r="0.8"></circle><circle cx="945" cy="125" fill="#c2d4ee" opacity="0.23" r="0.7"></circle><circle cx="533" cy="357" fill="#c2d4ee" opacity="0.48" r="0.8"></circle><circle cx="907" cy="169" fill="#c2d4ee" opacity="0.29" r="1.5"></circle><circle cx="646" cy="446" fill="#c2d4ee" opacity="0.37" r="1.2"></circle><circle cx="88" cy="433" fill="#c2d4ee" opacity="0.17" r="1.0"></circle><circle cx="775" cy="33" fill="#c2d4ee" opacity="0.22" r="1.0"></circle><circle cx="185" cy="156" fill="#c2d4ee" opacity="0.25" r="1.0"></circle><circle cx="343" cy="440" fill="#c2d4ee" opacity="0.42" r="1.0"></circle><circle cx="269" cy="36" fill="#c2d4ee" opacity="0.35" r="0.8"></circle><circle cx="933" cy="451" fill="#c2d4ee" opacity="0.37" r="1.0"></circle><circle cx="731" cy="464" fill="#c2d4ee" opacity="0.33" r="0.7"></circle><circle cx="74" cy="426" fill="#c2d4ee" opacity="0.24" r="0.8"></circle><circle cx="211" cy="65" fill="#c2d4ee" opacity="0.42" r="1.2"></circle><circle cx="602" cy="65" fill="#c2d4ee" opacity="0.15" r="0.7"></circle><circle cx="521" cy="258" fill="#c2d4ee" opacity="0.19" r="1.5"></circle><circle cx="1122" cy="39" fill="#c2d4ee" opacity="0.25" r="1.0"></circle><circle cx="389" cy="499" fill="#c2d4ee" opacity="0.32" r="1.2"></circle><circle cx="28" cy="206" fill="#c2d4ee" opacity="0.17" r="0.8"></circle><circle cx="903" cy="517" fill="#c2d4ee" opacity="0.35" r="1.0"></circle><circle cx="801" cy="369" fill="#c2d4ee" opacity="0.23" r="1.2"></circle><circle cx="637" cy="208" fill="#c2d4ee" opacity="0.43" r="0.8"></circle><circle cx="1068" cy="410" fill="#c2d4ee" opacity="0.56" r="0.8"></circle><circle cx="829" cy="424" fill="#c2d4ee" opacity="0.35" r="1.0"></circle><circle cx="651" cy="169" fill="#c2d4ee" opacity="0.32" r="1.5"></circle><ellipse cx="598" cy="268" fill="none" rx="226.2" ry="93.0" stroke="#53698a" stroke-dasharray="3 8" stroke-opacity=".2" transform="rotate(-14 598 268)"></ellipse><ellipse cx="598" cy="268" fill="none" rx="348.0" ry="143.0" stroke="#53698a" stroke-dasharray="3 8" stroke-opacity=".2" transform="rotate(-14 598 268)"></ellipse><ellipse cx="598" cy="268" fill="none" rx="469.8" ry="193.1" stroke="#53698a" stroke-dasharray="3 8" stroke-opacity=".2" transform="rotate(-14 598 268)"></ellipse><path d="M598 268 Q378.0 256.5 248 155" fill="none" stroke="#62e6c5" stroke-opacity=".35" stroke-width="1.4"></path><path d="M248 155 L312.0 155.0" stroke="#62e6c5" stroke-opacity=".27"></path><circle cx="312.0" cy="155.0" fill="#62e6c5" opacity=".8" r="2.5"></circle><path d="M248 155 L283.5 179.5" stroke="#62e6c5" stroke-opacity=".27"></path><circle cx="283.5" cy="179.5" fill="#62e6c5" opacity=".8" r="3"></circle><path d="M248 155 L235.3 185.6" stroke="#62e6c5" stroke-opacity=".27"></path><circle cx="235.3" cy="185.6" fill="#62e6c5" opacity=".8" r="3"></circle><path d="M248 155 L192.1 169.8" stroke="#62e6c5" stroke-opacity=".27"></path><circle cx="192.1" cy="169.8" fill="#62e6c5" opacity=".8" r="2.5"></circle><path d="M248 155 L198.4 141.9" stroke="#62e6c5" stroke-opacity=".27"></path><circle cx="198.4" cy="141.9" fill="#62e6c5" opacity=".8" r="2.5"></circle><path d="M248 155 L232.6 118.0" stroke="#62e6c5" stroke-opacity=".27"></path><circle cx="232.6" cy="118.0" fill="#62e6c5" opacity=".8" r="3"></circle><path d="M248 155 L280.4 132.6" stroke="#62e6c5" stroke-opacity=".27"></path><circle cx="280.4" cy="132.6" fill="#62e6c5" opacity=".8" r="3"></circle><circle cx="248" cy="155" fill="#62e6c5" opacity=".09" r="18"></circle><circle cx="248" cy="155" fill="#62e6c5" r="6"></circle><rect fill="#111e32" fill-opacity=".84" height="24" rx="5" width="87.4" x="204.3" y="109.0"></rect><text fill="#62e6c5" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="600" text-anchor="middle" x="248" y="126">PASOKAN</text><path d="M598 268 Q809.5 165.5 931 153" fill="none" stroke="#ae9bff" stroke-opacity=".35" stroke-width="1.4"></path><path d="M931 153 L974.9 160.5" stroke="#ae9bff" stroke-opacity=".27"></path><circle cx="974.9" cy="160.5" fill="#ae9bff" opacity=".8" r="3"></circle><path d="M931 153 L951.8 182.2" stroke="#ae9bff" stroke-opacity=".27"></path><circle cx="951.8" cy="182.2" fill="#ae9bff" opacity=".8" r="4"></circle><path d="M931 153 L898.5 183.9" stroke="#ae9bff" stroke-opacity=".27"></path><circle cx="898.5" cy="183.9" fill="#ae9bff" opacity=".8" r="4"></circle><path d="M931 153 L873.6 157.7" stroke="#ae9bff" stroke-opacity=".27"></path><circle cx="873.6" cy="157.7" fill="#ae9bff" opacity=".8" r="3"></circle><path d="M931 153 L890.7 132.4" stroke="#ae9bff" stroke-opacity=".27"></path><circle cx="890.7" cy="132.4" fill="#ae9bff" opacity=".8" r="4"></circle><path d="M931 153 L935.8 118.4" stroke="#ae9bff" stroke-opacity=".27"></path><circle cx="935.8" cy="118.4" fill="#ae9bff" opacity=".8" r="2.5"></circle><path d="M931 153 L978.1 135.4" stroke="#ae9bff" stroke-opacity=".27"></path><circle cx="978.1" cy="135.4" fill="#ae9bff" opacity=".8" r="2.5"></circle><circle cx="931" cy="153" fill="#ae9bff" opacity=".09" r="18"></circle><circle cx="931" cy="153" fill="#ae9bff" r="6"></circle><rect fill="#111e32" fill-opacity=".84" height="24" rx="5" width="147.0" x="857.5" y="107.0"></rect><text fill="#ae9bff" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="600" text-anchor="middle" x="931" y="124">HARGA &amp; PASAR</text><path d="M598 268 Q729.0 382.5 950 407" fill="none" stroke="#f5c578" stroke-opacity=".35" stroke-width="1.4"></path><path d="M950 407 L983.8 419.7" stroke="#f5c578" stroke-opacity=".27"></path><circle cx="983.8" cy="419.7" fill="#f5c578" opacity=".8" r="4"></circle><path d="M950 407 L954.5 441.0" stroke="#f5c578" stroke-opacity=".27"></path><circle cx="954.5" cy="441.0" fill="#f5c578" opacity=".8" r="3"></circle><path d="M950 407 L918.4 423.1" stroke="#f5c578" stroke-opacity=".27"></path><circle cx="918.4" cy="423.1" fill="#f5c578" opacity=".8" r="4"></circle><path d="M950 407 L897.6 402.6" stroke="#f5c578" stroke-opacity=".27"></path><circle cx="897.6" cy="402.6" fill="#f5c578" opacity=".8" r="4"></circle><path d="M950 407 L917.6 376.0" stroke="#f5c578" stroke-opacity=".27"></path><circle cx="917.6" cy="376.0" fill="#f5c578" opacity=".8" r="2.5"></circle><path d="M950 407 L965.8 385.0" stroke="#f5c578" stroke-opacity=".27"></path><circle cx="965.8" cy="385.0" fill="#f5c578" opacity=".8" r="4"></circle><path d="M950 407 L993.0 399.7" stroke="#f5c578" stroke-opacity=".27"></path><circle cx="993.0" cy="399.7" fill="#f5c578" opacity=".8" r="4"></circle><circle cx="950" cy="407" fill="#f5c578" opacity=".09" r="18"></circle><circle cx="950" cy="407" fill="#f5c578" r="6"></circle><rect fill="#111e32" fill-opacity=".84" height="24" rx="5" width="67.6" x="916.2" y="361.0"></rect><text fill="#f5c578" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="600" text-anchor="middle" x="950" y="378">CUACA</text><path d="M598 268 Q463.5 291.5 239 405" fill="none" stroke="#7dbbff" stroke-opacity=".35" stroke-width="1.4"></path><path d="M239 405 L265.1 423.1" stroke="#7dbbff" stroke-opacity=".27"></path><circle cx="265.1" cy="423.1" fill="#7dbbff" opacity=".8" r="3"></circle><path d="M239 405 L223.7 441.4" stroke="#7dbbff" stroke-opacity=".27"></path><circle cx="223.7" cy="441.4" fill="#7dbbff" opacity=".8" r="4"></circle><path d="M239 405 L175.0 421.9" stroke="#7dbbff" stroke-opacity=".27"></path><circle cx="175.0" cy="421.9" fill="#7dbbff" opacity=".8" r="2.5"></circle><path d="M239 405 L190.4 392.0" stroke="#7dbbff" stroke-opacity=".27"></path><circle cx="190.4" cy="392.0" fill="#7dbbff" opacity=".8" r="2.5"></circle><path d="M239 405 L228.9 380.3" stroke="#7dbbff" stroke-opacity=".27"></path><circle cx="228.9" cy="380.3" fill="#7dbbff" opacity=".8" r="4"></circle><path d="M239 405 L265.9 386.5" stroke="#7dbbff" stroke-opacity=".27"></path><circle cx="265.9" cy="386.5" fill="#7dbbff" opacity=".8" r="4"></circle><path d="M239 405 L280.0 405.1" stroke="#7dbbff" stroke-opacity=".27"></path><circle cx="280.0" cy="405.1" fill="#7dbbff" opacity=".8" r="2.5"></circle><circle cx="239" cy="405" fill="#7dbbff" opacity=".09" r="18"></circle><circle cx="239" cy="405" fill="#7dbbff" r="6"></circle><rect fill="#111e32" fill-opacity=".84" height="24" rx="5" width="166.8" x="155.6" y="359.0"></rect><text fill="#7dbbff" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="600" text-anchor="middle" x="239" y="376">DOKUMEN &amp; BUKTI</text><path d="M598 268 Q555.5 216.0 603 74" fill="none" stroke="#f6a9c0" stroke-opacity=".35" stroke-width="1.4"></path><path d="M603 74 L617.5 94.5" stroke="#f6a9c0" stroke-opacity=".27"></path><circle cx="617.5" cy="94.5" fill="#f6a9c0" opacity=".8" r="3"></circle><path d="M603 74 L572.3 103.0" stroke="#f6a9c0" stroke-opacity=".27"></path><circle cx="572.3" cy="103.0" fill="#f6a9c0" opacity=".8" r="3"></circle><path d="M603 74 L559.5 77.5" stroke="#f6a9c0" stroke-opacity=".27"></path><circle cx="559.5" cy="77.5" fill="#f6a9c0" opacity=".8" r="4"></circle><path d="M603 74 L556.2 50.0" stroke="#f6a9c0" stroke-opacity=".27"></path><circle cx="556.2" cy="50.0" fill="#f6a9c0" opacity=".8" r="3"></circle><path d="M603 74 L606.6 48.8" stroke="#f6a9c0" stroke-opacity=".27"></path><circle cx="606.6" cy="48.8" fill="#f6a9c0" opacity=".8" r="4"></circle><path d="M603 74 L653.5 55.2" stroke="#f6a9c0" stroke-opacity=".27"></path><circle cx="653.5" cy="55.2" fill="#f6a9c0" opacity=".8" r="3"></circle><path d="M603 74 L663.1 84.3" stroke="#f6a9c0" stroke-opacity=".27"></path><circle cx="663.1" cy="84.3" fill="#f6a9c0" opacity=".8" r="4"></circle><circle cx="603" cy="74" fill="#f6a9c0" opacity=".09" r="18"></circle><circle cx="603" cy="74" fill="#f6a9c0" r="6"></circle><rect fill="#111e32" fill-opacity=".84" height="24" rx="5" width="97.4" x="554.3" y="28.0"></rect><text fill="#f6a9c0" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="600" text-anchor="middle" x="603" y="45">REGULASI</text><path d="M598 268 Q647.0 322.0 606 466" fill="none" stroke="#80d9f2" stroke-opacity=".35" stroke-width="1.4"></path><path d="M606 466 L610.6 501.7" stroke="#80d9f2" stroke-opacity=".27"></path><circle cx="610.6" cy="501.7" fill="#80d9f2" opacity=".8" r="2.5"></circle><path d="M606 466 L558.9 489.8" stroke="#80d9f2" stroke-opacity=".27"></path><circle cx="558.9" cy="489.8" fill="#80d9f2" opacity=".8" r="3"></circle><path d="M606 466 L560.5 462.1" stroke="#80d9f2" stroke-opacity=".27"></path><circle cx="560.5" cy="462.1" fill="#80d9f2" opacity=".8" r="4"></circle><path d="M606 466 L578.2 439.3" stroke="#80d9f2" stroke-opacity=".27"></path><circle cx="578.2" cy="439.3" fill="#80d9f2" opacity=".8" r="4"></circle><path d="M606 466 L625.6 438.9" stroke="#80d9f2" stroke-opacity=".27"></path><circle cx="625.6" cy="438.9" fill="#80d9f2" opacity=".8" r="2.5"></circle><path d="M606 466 L669.1 455.4" stroke="#80d9f2" stroke-opacity=".27"></path><circle cx="669.1" cy="455.4" fill="#80d9f2" opacity=".8" r="2.5"></circle><path d="M606 466 L651.3 483.1" stroke="#80d9f2" stroke-opacity=".27"></path><circle cx="651.3" cy="483.1" fill="#80d9f2" opacity=".8" r="3"></circle><circle cx="606" cy="466" fill="#80d9f2" opacity=".09" r="18"></circle><circle cx="606" cy="466" fill="#80d9f2" r="6"></circle><rect fill="#111e32" fill-opacity=".84" height="24" rx="5" width="97.4" x="557.3" y="420.0"></rect><text fill="#80d9f2" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="600" text-anchor="middle" x="606" y="437">LOGISTIK</text><circle cx="598" cy="268" fill="url(#galaxy-core)" r="90"></circle><circle cx="598" cy="268" fill="#142d3d" r="63" stroke="#74e7c7" stroke-opacity=".7"></circle><circle cx="598" cy="268" fill="none" r="72" stroke="#7ee8ce" stroke-opacity=".13"></circle><text fill="#d8fff1" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" text-anchor="middle" x="598" y="266">KARET</text><text fill="#d8fff1" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" text-anchor="middle" x="598" y="287">ALAM</text><text fill="#8ea6c7" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="600" text-anchor="start" x="24" y="30">KNOWLEDGE GALAXY / KONSEP ANTARMUKA</text><text fill="#8ea6c7" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="600" text-anchor="end" x="1176" y="528">SKEMATIS · BUKAN DATA NYATA</text></svg></div><figcaption>Galaksi adalah proyeksi pengetahuan. Garis harus memiliki makna dan bukti; kedekatan visual bukan sebab-akibat.</figcaption></figure>
+<p><strong>Galaksi adalah tampilan dari pengetahuan yang boleh dilihat pengguna, bukan pengganti arsip dan database.</strong> Ilustrasi di dokumen ini bersifat skematis; tidak memuat pemasok atau kejadian nyata.</p>
+<div aria-label="Tabel rincian teknis; dapat digeser horizontal" class="table-wrap" role="region" tabindex="0"><table>
+<thead>
+<tr>
+<th>Metafora</th>
+<th>Makna dalam aplikasi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bintang</td>
+<td>Entitas atau kejadian; dokumen menjadi node saat mode bukti dibuka</td>
+</tr>
+<tr>
+<td>Gugus</td>
+<td>Kelompok topik, wilayah, atau rantai pasok yang dapat dijelaskan</td>
+</tr>
+<tr>
+<td>Garis</td>
+<td>Relasi bertipe dengan bukti; klik untuk melihat sumber dan status</td>
+</tr>
+<tr>
+<td>Cahaya/penanda baru</td>
+<td>Kebaruan informasi, bukan jaminan kebenaran atau tingkat bahaya</td>
+</tr>
+<tr>
+<td>Garis waktu</td>
+<td>Filter waktu kejadian dan pilihan “diketahui sistem sampai tanggal…”</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Interaksi utama</h3>
+<ol>
+<li><strong>Overview:</strong> lihat gugus harga, pasokan, cuaca, perdagangan, logistik dan regulasi; tidak memuat setiap dokumen sekaligus.</li>
+<li><strong>Zoom:</strong> buka satu gugus/entitas, tampilkan tetangga satu atau dua hop yang relevan.</li>
+<li><strong>Filter:</strong> wilayah, jenis entitas, sumber, grade, rentang waktu, jenis informasi dan status review.</li>
+<li><strong>Evidence drawer:</strong> lihat relasi, kutipan/sel bukti yang diizinkan, penerbit, versi dokumen, waktu terbit dan waktu akuisisi.</li>
+<li><strong>Timeline dan watchlist:</strong> simpan ruang pantau; hubungkan perubahan dengan peringatan.</li>
+<li><strong>Tampilan alternatif:</strong> tabel, hasil pencarian dan peta. Semua informasi penting tetap dapat diakses tanpa harus menavigasi animasi.</li>
+</ol>
+<p>Untuk pilot, respons subgraph dibatasi misalnya <strong>500 node / 1.000 edge</strong>. Gunakan pengelompokan dan pemuatan bertahap di server; bukan mengirim jutaan node ke browser. Node/relasi yang disembunyikan karena batas jumlah diberi indikator, tanpa membocorkan objek yang pengguna tidak berhak lihat.</p>
+<p>Warna tidak menjadi satu-satunya pembeda; gunakan bentuk, label, legenda dan status. Gerakan dapat dimatikan. Ukuran node mengikuti metrik yang disebutkan, misalnya jumlah hubungan <strong>dalam hasil terfilter</strong>, bukan klaim “paling berpengaruh”. Jarak layout bukan jarak geografis atau bukti sebab-akibat. Cluster buatan algoritma ditandai sebagai hasil pengelompokan, bukan klasifikasi resmi.</p>
+</section><section class="doc-section" id="s11"><h2><span class="section-no">11</span>Intelligence dan peringatan</h2>
+<p>Mulai dengan aturan transparan, bukan agen yang bebas membuat kesimpulan.</p>
+<h3>Tiga aturan awal</h3>
+<ol>
+<li><strong>Perubahan harga sebanding:</strong> bandingkan seri, grade, unit, jenis harga dan frekuensi yang sama. Ambang perubahan ditentukan pengguna. Harga bulanan tidak dievaluasi seolah-olah tick harian.</li>
+<li><strong>Paparan cuaca pada lokasi pemasok:</strong> hubungkan prakiraan yang relevan dengan lokasi yang telah diverifikasi. Keluaran: potensi paparan yang perlu diperiksa; bukan bukti penurunan produksi.</li>
+<li><strong>Perubahan dokumen/topik watchlist:</strong> deteksi dokumen baru atau versi berubah yang menyebut entitas/topik pantauan, dengan sumber dan ringkasan berbukti.</li>
+</ol>
+<p>Setiap alert mencantumkan alasan, input, waktu, versi aturan, status, tautan bukti, keterbatasan dan penanggung jawab. Deduplikasi, cooldown, tingkat prioritas, acknowledge dan penutupan mencegah banjir notifikasi. MVP cukup memiliki inbox dalam aplikasi; email/webhook ditambahkan setelah tujuan serta izin disetujui.</p>
+<h3>Contoh keluaran—sepenuhnya simulasi</h3>
+<pre><code class="language-json">{
+  "record_type": "risk_signal",
+  "example_only": true,
+  "category": "weather_supply_exposure",
+  "status": "potential",
+  "evidence_ids": ["forecast_demo_01", "supplier_location_demo_01"],
+  "rule_version": "weather_exposure_v1",
+  "reason": "Prakiraan cuaca relevan dengan lokasi pemasok terdaftar.",
+  "limitations": [
+    "Prakiraan bukan bukti banjir.",
+    "Lokasi pemasok bukan bukti lokasi seluruh kebun asal.",
+    "Tidak membuktikan produksi turun atau pengiriman terlambat."
+  ]
+}
+</code></pre>
+<p>Jika asisten tanya-jawab ditambahkan nanti, gunakan retrieval dengan hak akses yang sama, jawaban bersumber, tanggal snapshot dan penolakan untuk menyimpulkan tanpa bukti. Angka/perhitungan dikerjakan oleh fungsi deterministik. Konten dokumen dianggap data tidak tepercaya: tidak dapat mengubah instruksi sistem, menjalankan tool, membuka URL arbitrer, atau memerintahkan pengiriman data.</p>
+</section><section class="doc-section" id="s12"><h2><span class="section-no">12</span>Kontrak API awal</h2>
+<p>API berversi; <code>tenant_id</code> diturunkan dari sesi dan keanggotaan yang terverifikasi, bukan dipercaya dari input klien. Pagination berbasis cursor, format error konsisten, audit, pembatasan permintaan, dan <code>Idempotency-Key</code> untuk mutasi yang dapat diulang.</p>
+<div aria-label="Tabel rincian teknis; dapat digeser horizontal" class="table-wrap" role="region" tabindex="0"><table>
+<thead>
+<tr>
+<th>Endpoint usulan</th>
+<th>Fungsi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST /v1/uploads</code></td>
+<td>Buat sesi unggah privat dan URL sementara yang dibatasi ukuran/tipe</td>
+</tr>
+<tr>
+<td><code>POST /v1/uploads/{id}/complete</code></td>
+<td>Verifikasi objek, hash dan hak, lalu buat job; URL unggah tidak otomatis berarti data diterima</td>
+</tr>
+<tr>
+<td><code>GET /v1/jobs/{id}</code></td>
+<td>Status, tahap, error terstruktur, dan tindakan yang tersedia</td>
+</tr>
+<tr>
+<td><code>GET /v1/documents/{id}/versions</code></td>
+<td>Riwayat dokumen yang diizinkan</td>
+</tr>
+<tr>
+<td><code>GET /v1/evidence/{id}</code></td>
+<td>Bukti dan lokasi asal; raw download bila hak mengizinkan</td>
+</tr>
+<tr>
+<td><code>GET /v1/search</code></td>
+<td>Teks + filter periode/sumber/entitas/status</td>
+</tr>
+<tr>
+<td><code>GET /v1/entities/{id}</code></td>
+<td>Profil dan identifier berbukti</td>
+</tr>
+<tr>
+<td><code>GET /v1/galaxy</code></td>
+<td>Subgraph terfilter, agregasi, batas jumlah dan status pemotongan</td>
+</tr>
+<tr>
+<td><code>GET /v1/events</code></td>
+<td>Timeline dengan pilihan waktu kejadian atau waktu diketahui</td>
+</tr>
+<tr>
+<td><code>GET /v1/alerts</code></td>
+<td>Inbox peringatan; acknowledge melalui mutasi terpisah</td>
+</tr>
+<tr>
+<td><code>POST /v1/sources/{id}/dry-run</code></td>
+<td>Uji adapter oleh admin tanpa langsung mengaktifkan jadwal</td>
+</tr>
+<tr>
+<td><code>POST /v1/review-tasks/{id}/decision</code></td>
+<td>Keputusan pengelola data, alasan dan versi; diaudit</td>
+</tr>
+</tbody>
+</table></div>
+<p>Frontend mengakses API melalui origin aplikasi atau reverse proxy. Browser tidak diarahkan ke <code>localhost</code> untuk menghubungi layanan yang berjalan di server. Kredensial feed/model hanya berada di backend; parser dan collector memiliki izin minimum.</p>
+</section><section class="doc-section" id="s13"><h2><span class="section-no">13</span>Keamanan, deployment, dan operasi</h2>
+<h3>Kontrol yang wajib sejak MVP</h3>
+<ul>
+<li><strong>RBAC:</strong> admin mengelola sumber/akses; data steward meninjau kualitas; analyst memakai pencarian dan watchlist; viewer hanya membaca. Hak sensitif seperti ekspor massal dipisahkan.</li>
+<li><strong>Pemisahan data:</strong> <code>tenant_id</code>, constraint lintas tabel dan PostgreSQL row-level security. Hak akses diterapkan juga pada indeks, graph, cache, embedding, ekspor dan raw asset. Signed URL berumur pendek; bucket tidak publik.</li>
+<li><strong>Perlindungan:</strong> TLS, enkripsi penyimpanan dan backup, secret di pengelola secret/environment yang aman, rotasi, serta pemisahan development/production.</li>
+<li><strong>Collector aman:</strong> allowlist domain dan protokol; cegah SSRF ke jaringan privat, loopback dan metadata cloud, termasuk redirect serta perubahan DNS. Batasi respons, redirect, waktu dan bandwidth. HTML eksternal disanitasi dan tidak dieksekusi.</li>
+<li><strong>Privasi:</strong> koordinat kebun, identitas petani, kontrak dan harga internal dapat sensitif. Kumpulkan seperlunya, batasi akses, dan tetapkan dasar pemrosesan serta kewajiban perlindungan data yang berlaku.</li>
+<li><strong>AI:</strong> tidak mengirim data privat ke penyedia model/embedding tanpa persetujuan dan kebijakan yang sesuai. Model akses baca-terbatas; output terstruktur divalidasi.</li>
+<li><strong>Retensi:</strong> tetapkan per kelas data dan sumber sebelum aktivasi. Append-only mencegah penimpaan diam-diam, <strong>bukan janji menyimpan selamanya</strong>. Penghapusan sah mencakup raw, turunan, indeks/cache/embedding; backup mengikuti jadwal kedaluwarsa dan proses pencegahan pemulihan ulang data terhapus. Audit menyimpan metadata minimal yang dibenarkan.</li>
+</ul>
+<h3>Bentuk deployment pilot</h3>
+<p>Reverse proxy/TLS → frontend + API → PostgreSQL dan bucket privat. Scheduler/outbox dispatcher dan worker berjalan sebagai proses terpisah; Redis internal, tidak diekspos publik. Tambahkan worker horizontal bila antrean membesar. Produksi memerlukan hosting yang terus aktif; percakapan ini sendiri tidak menjalankan pemantauan 24/7.</p>
+<h3>Observabilitas dan pemulihan</h3>
+<p>Pantau keberhasilan per sumber, keterlambatan jadwal, usia data, perubahan skema, panjang/usia antrean, error parsing, ukuran arsip, biaya API/model, dan antrean review. Bedakan status <strong>belum aktif, sehat, tidak ada pembaruan, terlambat, dibatasi, dan gagal</strong>.</p>
+<p>Target pilot usulan: backup terenkripsi harian dengan retensi 30 hari, <strong>RPO ≤24 jam</strong> dan <strong>RTO ≤8 jam</strong>. Ini target yang harus dibuktikan lewat uji restore database, objek, konfigurasi dan kunci—bukan jaminan sebelum diuji. Pertimbangkan PITR dan layanan ber-redundansi saat kebutuhan bisnis menuntutnya. Backup berada di domain kegagalan terpisah dari server utama.</p>
+</section><section class="doc-section" id="s14"><h2><span class="section-no">14</span>Roadmap pengembangan</h2>
+<p>Estimasi kerja awal <strong>10–12 minggu</strong>, dengan dua engineer dan keterlibatan rutin pemilik domain/data. Bukan penawaran biaya atau janji tanggal rilis; akses sumber, kerumitan data dan hasil UAT dapat mengubahnya.</p>
+<div aria-label="Tabel rincian teknis; dapat digeser horizontal" class="table-wrap" role="region" tabindex="0"><table>
+<thead>
+<tr>
+<th>Tahap</th>
+<th>Waktu usulan</th>
+<th>Hasil dan gerbang kelulusan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fondasi</td>
+<td>Minggu 1</td>
+<td>100–200 sampel berizin, kamus data, daftar sumber, kebijakan akses/retensi, repository dan keputusan arsitektur disepakati</td>
+</tr>
+<tr>
+<td>Ingestion</td>
+<td>Minggu 2–3</td>
+<td>Unggah, manifest/hash, parser, karantina, job/outbox, versi dokumen dan bukti sel/halaman; replay tidak menggandakan observasi</td>
+</tr>
+<tr>
+<td>Adapter publik</td>
+<td>Minggu 4–5</td>
+<td>World Bank dan BMKG lolos dry-run, atribusi, uji revisi/skema, retry dan dashboard kesehatan</td>
+</tr>
+<tr>
+<td>Pengetahuan &amp; discovery</td>
+<td>Minggu 6–7</td>
+<td>Metadata berita berizin, resolusi entitas dasar, klaim berbukti, review dan tiga aturan awal; domain baru tetap melalui persetujuan</td>
+</tr>
+<tr>
+<td>Pengalaman pengguna</td>
+<td>Minggu 8–9</td>
+<td>Pencarian, profil entitas, galaksi, timeline, watchlist, inbox alert dan tampilan tabel alternatif</td>
+</tr>
+<tr>
+<td>Hardening &amp; pilot</td>
+<td>Minggu 10–12</td>
+<td>Uji beban, keamanan, isolasi tenant, restore, UAT domain, runbook dan deployment yang terus aktif</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Di luar jalur kritis MVP:</strong> chatbot generatif, database graph terpisah, OCR massal, stream bursa, forecasting harga, dan ketertelusuran lot fisik end-to-end.</p>
+</section><section class="doc-section" id="s15"><h2><span class="section-no">15</span>Kriteria penerimaan dan biaya</h2>
+<h3>Sasaran uji pilot—belum benchmark</h3>
+<div aria-label="Tabel rincian teknis; dapat digeser horizontal" class="table-wrap" role="region" tabindex="0"><table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Kriteria kelulusan usulan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Provenance</td>
+<td>100% klaim/observasi yang dipublikasikan dapat ditelusuri ke bukti, sumber, versi dan waktu; jika bukti tidak boleh disimpan, batas tersebut terlihat</td>
+</tr>
+<tr>
+<td>Idempotensi</td>
+<td>Replay file, retry job, pengambilan berulang dan revisi sumber tidak menggandakan nilai aktif/agregasi</td>
+</tr>
+<tr>
+<td>Kualitas</td>
+<td>Pada set evaluasi berlabel yang disepakati, target precision ≥90% dan recall ≥80% untuk field/relasi terpilih; laporkan per kelas, bukan satu angka “akurasi AI”</td>
+</tr>
+<tr>
+<td>Resolusi entitas</td>
+<td>Penggabungan ambigu masuk review; merge/split dapat dibatalkan tanpa kehilangan bukti</td>
+</tr>
+<tr>
+<td>Keamanan</td>
+<td>Uji negatif lintas tenant untuk API, raw URL, search, graph, cache dan ekspor semuanya lulus</td>
+</tr>
+<tr>
+<td>Pencarian</td>
+<td>Sasaran p95 ≤2 detik pada corpus pilot hingga 100.000 dokumen dengan teks terindeks rata-rata ≤5.000 karakter, 10 sesi uji serentak dan konfigurasi server yang dicatat; beban lebih besar diuji ulang</td>
+</tr>
+<tr>
+<td>Galaksi</td>
+<td>Maksimum awal 500 node/1.000 edge per tampilan; target respons API p95 ≤2 detik, lalu uji render/interaksi pada laptop pilot yang disebutkan spesifikasinya</td>
+</tr>
+<tr>
+<td>Kesegaran</td>
+<td>Untuk sumber sehat, target 95% job mulai dalam 15 menit dari jadwal. Ukur terpisah dari jeda publikasi penerbit, waktu unduh dan waktu pemrosesan</td>
+</tr>
+<tr>
+<td>Pemulihan</td>
+<td>Uji restore memenuhi RPO/RTO yang disepakati; catat durasi serta kehilangan data aktual</td>
+</tr>
+<tr>
+<td>Operasi</td>
+<td>Sumber gagal atau terpotong terlihat, alert memiliki alasan/bukti, ada runbook retry dan pemilik setiap sumber</td>
+</tr>
+</tbody>
+</table></div>
+<p>Set evaluasi dipisahkan dari contoh untuk menyusun prompt/aturan. Pengukuran precision/recall dilakukan per field dan relasi, dengan definisi label yang jelas. Target yang gagal menjadi pekerjaan perbaikan atau pengurangan cakupan; tidak disembunyikan di balik visualisasi.</p>
+<h3>Mengukur cakupan dengan jujur</h3>
+<p>Tampilkan jumlah sumber disetujui/aktif/sehat, wilayah dan topik yang dipantau, rentang arsip, usia data terakhir, jumlah dokumen tersimpan, serta celah koleksi. Jangan menampilkan “cakupan seluruh dunia 100%”. Tidak adanya dokumen di arsip tidak membuktikan tidak adanya kejadian.</p>
+<h3>Model biaya sebelum menentukan anggaran</h3>
+<p>Biaya bulanan = compute frontend/API/worker + database + object storage dan backup + bandwidth + lisensi sumber/search + token model/embedding + observabilitas serta operasi. Pisahkan biaya pembangunan dari biaya berjalan.</p>
+<p><strong>Ilustrasi kapasitas, bukan proyeksi penggunaan:</strong> 2.000 objek/hari × 300 KB × 365 hari ≈ <strong>219 GB/tahun</strong> raw, sebelum versi tambahan, teks hasil ekstraksi, indeks, replika dan backup. Jumlah node graph saja tidak cukup untuk menghitung biaya.</p>
+<p>Jalankan benchmark dengan sampel nyata sebelum memilih paket cloud. Tetapkan kuota per sumber, batas token/dokumen dan anggaran reproses; hindari membaca ulang seluruh arsip dengan model setiap hari. Tidak ada harga cloud/feed yang diasumsikan sudah disetujui dalam blueprint ini.</p>
+</section><section class="doc-section" id="s16"><h2><span class="section-no">16</span>Keputusan yang dibekukan dan langkah berikutnya</h2>
+<h3>Catatan keputusan arsitektur</h3>
+<ul>
+<li><strong>ADR-01:</strong> simpan raw yang diizinkan dan provenance sebelum menambahkan intelligence.</li>
+<li><strong>ADR-02:</strong> PostgreSQL + object storage menjadi fondasi awal; graph adalah model pengetahuan, bukan alasan memasang stack terdistribusi sejak hari pertama.</li>
+<li><strong>ADR-03:</strong> kolektor terjadwal dan discovery dipisahkan; domain baru tidak otomatis memperoleh izin crawling.</li>
+<li><strong>ADR-04:</strong> klaim, prakiraan, pengukuran dan inferensi dibedakan; tidak ada klaim sebab-akibat dari kedekatan node.</li>
+<li><strong>ADR-05:</strong> galaksi 2D dengan bukti dan tampilan alternatif lebih dahulu; efek visual tidak mengalahkan keterbacaan.</li>
+<li><strong>ADR-06:</strong> pemrosesan at-least-once dengan idempotensi; revisi dan koreksi berversi, bukan ditimpa diam-diam.</li>
+</ul>
+<h3>Input yang dibutuhkan sebelum sprint pertama</h3>
+<ol>
+<li>Satu pemilik keputusan bisnis dan satu penanggung jawab data/review.</li>
+<li>Tiga contoh pertanyaan bisnis paling penting, misalnya perubahan harga pembelian atau paparan pasokan.</li>
+<li>Sampel berizin: file pembelian, daftar pemasok/lokasi, spesifikasi produk, dan beberapa dokumen karet; data sintetis dipakai bila data asli belum aman dibagikan.</li>
+<li>Pilihan wilayah, grade/material dan sumber pilot; lokasi pemasok tidak otomatis mewakili seluruh kebun asal.</li>
+<li>Batas akses, retensi, hosting, anggaran berjalan, dan proses persetujuan akun/lisensi. Tidak perlu memberikan password/API key melalui chat; gunakan secret manager saat implementasi.</li>
+</ol>
+<h3>Paket implementasi pertama yang direkomendasikan</h3>
+<p>Mulai dengan <strong>unggah satu file pembelian → arsip asli → mapping kolom → observasi bertipe dan bukti sel → pencarian → beberapa node/relasi berbukti</strong>. Lalu tambahkan satu adapter World Bank untuk menguji versi, periode dan perbandingan seri yang benar. Setelah alur ini lulus, perluas ke cuaca dan berita. Galaksi tumbuh dari data yang dapat dipercaya, bukan dari banyaknya titik yang dibuat.</p>
+</section><section class="doc-section" id="referensi"><h2>Referensi dan status verifikasi</h2>
+<p>Dokumentasi diperiksa pada 15 Oktober 2026. Pemeriksaan ini tidak sama dengan pengujian SLA, ketersediaan seluruh histori, autentikasi, ketentuan kontrak terbaru, atau kelengkapan cakupan sumber.</p>
+<ul>
+<li><strong>BMKG:</strong> format, horizon, frekuensi, atribusi dan batas akses—<a class="citation" href="https://data.bmkg.go.id/prakiraan-cuaca/" rel="noopener noreferrer" target="_blank">[1]</a>.</li>
+<li><strong>BPS:</strong> WebAPI, token dan jenis sumber—<a class="citation" href="https://webapi.bps.go.id/documentation/" rel="noopener noreferrer" target="_blank">[1]</a>.</li>
+<li><strong>World Bank:</strong> portal data dan berkas bulanan—<a class="citation" href="https://www.worldbank.org/en/research/commodity-markets" rel="noopener noreferrer" target="_blank">[3]</a>; definisi seri karet dalam publikasi—<a class="citation" href="https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Pink-Sheet-June-2026.pdf" rel="noopener noreferrer" target="_blank">[1]</a>.</li>
+<li><strong>UN Comtrade:</strong> preview dan subscription API—<a class="citation" href="https://uncomtrade.org/docs/un-comtrade-api/" rel="noopener noreferrer" target="_blank">[2]</a>.</li>
+<li><strong>GDELT:</strong> DOC API dan perubahan perilaku historis—<a class="citation" href="https://blog.gdeltproject.org/gdelt-doc-2-0-api-debuts/" rel="noopener noreferrer" target="_blank">[1]</a>, <a class="citation" href="https://blog.gdeltproject.org/doc-2-0-updates-1-5-year-searching-and-updated-mobile-interface/" rel="noopener noreferrer" target="_blank">[3]</a>. Perilaku layanan aktual wajib diuji ketika implementasi.</li>
+<li><strong>SGX:</strong> referensi kebijakan 2020 untuk risiko lisensi, bukan tarif terkini—<a class="citation" href="https://www.datadirect.sgx.com/Portals/0/Documents/Market-Data-Policy/SGX%20Market%20Data%20Policy_1%20July%202020.pdf?ver=3VcRAqOoXvJSKwL8glUf_w%3D%3D" rel="noopener noreferrer" target="_blank">[2]</a>.</li>
+</ul>
+<hr/>
+<p><strong>Ringkasan akhir:</strong> bangun memori data yang berbukti lebih dahulu, kolektor yang terkendali berikutnya, lalu intelligence dan galaksi yang dapat ditelusuri. Besar dan otomatis tidak harus berarti tanpa batas, tanpa sumber, atau tanpa pengawasan.</p>
+</section></div>
+<p class="end-note">Dokumen ini mandiri: seluruh diagram dan gaya tertanam, tanpa library, font, atau gambar eksternal. Tautan referensi memerlukan koneksi bila dibuka. Versi sumber yang dapat diedit tersedia sebagai <strong>blueprint.md</strong>.</p>
+</main></div>
+<footer class="footer"><div><span>RUBBER INTELLIGENCE PLATFORM / BLUEPRINT v1.0</span><span>15 Oktober 2026 · Rancangan teknis, belum implementasi</span></div></footer>
+</body></html>

@@ -1,0 +1,24 @@
+{
+  "checked_at": "2026-10-16T02:01:57.505465+00:00",
+  "environment": "Chromium / Linux",
+  "mode": "local_rules",
+  "external_ai_used": false,
+  "checks": [
+    "Leading titles detected; unknown supplier header requires human mapping",
+    "Readonly sample check reports date errors without publishing",
+    "Format hint fixes date parsing; edited rules clear old checks and consent",
+    "Assistant modal fits 390/768/1440px without page overflow",
+    "Explicit approval performs full validation and publishes correct rows",
+    "Correction is remembered only through explicit approval button",
+    "Saved field mapping follows reordered headers; saved options are not applied silently",
+    "Approved reading rules can be reused explicitly and checked again",
+    "Forgetting a pattern leaves existing observations untouched",
+    "Two-level headers are exposed with correct field mapping",
+    "Original XLSX bytes and physical evidence row pointers are preserved",
+    "Zero JavaScript page errors"
+  ],
+  "page_errors": [],
+  "cleanup": true,
+  "status": "passed",
+  "passed_checks": 12
+}

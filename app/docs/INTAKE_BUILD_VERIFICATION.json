@@ -1,0 +1,34 @@
+{
+  "checked_at": "2026-10-16T02:13:14.471664+00:00",
+  "environment": "CPython 3.13 / Linux / SQLite",
+  "backend": {
+    "passed": 174,
+    "skipped": 1,
+    "warnings": 1,
+    "new_breakdown_tests": 43,
+    "warning": "Starlette TestClient/httpx deprecation",
+    "skip": "Optional real PostgreSQL migration integration"
+  },
+  "frontend": {
+    "motion_unit_tests_passed": 14,
+    "typescript_build": "passed",
+    "vite_build": "passed"
+  },
+  "browser": {
+    "intake_checks_passed": 17,
+    "excel_regression_passed": 12,
+    "galaxy_regression_passed": 16,
+    "page_errors": 0,
+    "synthetic_private_qa_cleaned": true
+  },
+  "health": "ok",
+  "sqlite_integrity": "ok",
+  "foreign_key_issues": 0,
+  "knowledge_records_at_check": 2463,
+  "raw_assets_size_and_sha256_verified": 13,
+  "qa_documents_remaining": 0,
+  "rubber_release_zip_count": 0,
+  "native_windows_tested": false,
+  "postgresql_retested": false,
+  "real_user_workbook_accuracy_benchmark": false
+}

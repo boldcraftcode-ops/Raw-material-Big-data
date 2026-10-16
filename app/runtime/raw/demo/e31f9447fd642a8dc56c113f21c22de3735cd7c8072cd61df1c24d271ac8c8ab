@@ -1,0 +1,39 @@
+tanggal,pemasok,id_pemasok,lokasi_pemasok,material,grade,harga,mata_uang,unit,basis_berat,kkk_persen,jenis_harga,kuantitas_kg
+2026-10-01,Koperasi Contoh Sejahtera,DEMO-001,Langkat,Bokar,,14000,IDR,kg,basah,60,transaksi_internal,1000
+2026-10-02,Unit Contoh Nusantara,DEMO-002,Deli Serdang,Lateks pekat,,17100,IDR,kg,produk,60,transaksi_internal,1020
+2026-10-03,Pengolah Contoh Lestari,DEMO-003,Asahan,Crumb rubber,SIR 20,20200,IDR,kg,produk,,transaksi_internal,1040
+2026-10-04,Koperasi Contoh Mandiri,DEMO-004,Labuhanbatu,Sheet,RSS 3,23300,IDR,kg,produk,,transaksi_internal,1060
+2026-10-05,Unit Contoh Hijau,DEMO-005,Simalungun,Bokar,,14000,IDR,kg,basah,60,transaksi_internal,1080
+2026-10-06,Pengolah Contoh Bersama,DEMO-006,Mandailing Natal,Lateks pekat,,17100,IDR,kg,produk,60,transaksi_internal,1100
+2026-10-07,Koperasi Contoh Sejahtera,DEMO-001,Langkat,Crumb rubber,SIR 20,20325,IDR,kg,produk,,transaksi_internal,1120
+2026-10-08,Unit Contoh Nusantara,DEMO-002,Deli Serdang,Sheet,RSS 3,23425,IDR,kg,produk,,transaksi_internal,1140
+2026-10-09,Pengolah Contoh Lestari,DEMO-003,Asahan,Bokar,,14125,IDR,kg,basah,60,transaksi_internal,1160
+2026-10-10,Koperasi Contoh Mandiri,DEMO-004,Labuhanbatu,Lateks pekat,,17225,IDR,kg,produk,60,transaksi_internal,1180
+2026-10-11,Unit Contoh Hijau,DEMO-005,Simalungun,Crumb rubber,SIR 20,20325,IDR,kg,produk,,transaksi_internal,1200
+2026-10-12,Pengolah Contoh Bersama,DEMO-006,Mandailing Natal,Sheet,RSS 3,23425,IDR,kg,produk,,transaksi_internal,1220
+2026-10-13,Koperasi Contoh Sejahtera,DEMO-001,Langkat,Bokar,,14250,IDR,kg,basah,60,transaksi_internal,1240
+2026-10-14,Unit Contoh Nusantara,DEMO-002,Deli Serdang,Lateks pekat,,17350,IDR,kg,produk,60,transaksi_internal,1260
+2026-10-01,Pengolah Contoh Lestari,DEMO-003,Asahan,Crumb rubber,SIR 20,20450,IDR,kg,produk,,transaksi_internal,1280
+2026-10-02,Koperasi Contoh Mandiri,DEMO-004,Labuhanbatu,Sheet,RSS 3,23550,IDR,kg,produk,,transaksi_internal,1300
+2026-10-03,Unit Contoh Hijau,DEMO-005,Simalungun,Bokar,,14250,IDR,kg,basah,60,transaksi_internal,1320
+2026-10-04,Pengolah Contoh Bersama,DEMO-006,Mandailing Natal,Lateks pekat,,17350,IDR,kg,produk,60,transaksi_internal,1340
+2026-10-05,Koperasi Contoh Sejahtera,DEMO-001,Langkat,Crumb rubber,SIR 20,20575,IDR,kg,produk,,transaksi_internal,1360
+2026-10-06,Unit Contoh Nusantara,DEMO-002,Deli Serdang,Sheet,RSS 3,23675,IDR,kg,produk,,transaksi_internal,1380
+2026-10-07,Pengolah Contoh Lestari,DEMO-003,Asahan,Bokar,,14375,IDR,kg,basah,60,transaksi_internal,1400
+2026-10-08,Koperasi Contoh Mandiri,DEMO-004,Labuhanbatu,Lateks pekat,,17475,IDR,kg,produk,60,transaksi_internal,1420
+2026-10-09,Unit Contoh Hijau,DEMO-005,Simalungun,Crumb rubber,SIR 20,20575,IDR,kg,produk,,transaksi_internal,1440
+2026-10-10,Pengolah Contoh Bersama,DEMO-006,Mandailing Natal,Sheet,RSS 3,23675,IDR,kg,produk,,transaksi_internal,1460
+2026-10-11,Koperasi Contoh Sejahtera,DEMO-001,Langkat,Bokar,,14500,IDR,kg,basah,60,transaksi_internal,1480
+2026-10-12,Unit Contoh Nusantara,DEMO-002,Deli Serdang,Lateks pekat,,17600,IDR,kg,produk,60,transaksi_internal,1500
+2026-10-13,Pengolah Contoh Lestari,DEMO-003,Asahan,Crumb rubber,SIR 20,20700,IDR,kg,produk,,transaksi_internal,1520
+2026-10-14,Koperasi Contoh Mandiri,DEMO-004,Labuhanbatu,Sheet,RSS 3,23800,IDR,kg,produk,,transaksi_internal,1540
+2026-10-01,Unit Contoh Hijau,DEMO-005,Simalungun,Bokar,,14500,IDR,kg,basah,60,transaksi_internal,1560
+2026-10-02,Pengolah Contoh Bersama,DEMO-006,Mandailing Natal,Lateks pekat,,17600,IDR,kg,produk,60,transaksi_internal,1580
+2026-10-03,Koperasi Contoh Sejahtera,DEMO-001,Langkat,Crumb rubber,SIR 20,20825,IDR,kg,produk,,transaksi_internal,1600
+2026-10-04,Unit Contoh Nusantara,DEMO-002,Deli Serdang,Sheet,RSS 3,23925,IDR,kg,produk,,transaksi_internal,1620
+2026-10-05,Pengolah Contoh Lestari,DEMO-003,Asahan,Bokar,,14625,IDR,kg,basah,60,transaksi_internal,1640
+2026-10-06,Koperasi Contoh Mandiri,DEMO-004,Labuhanbatu,Lateks pekat,,17725,IDR,kg,produk,60,transaksi_internal,1660
+2026-10-07,Unit Contoh Hijau,DEMO-005,Simalungun,Crumb rubber,SIR 20,20825,IDR,kg,produk,,transaksi_internal,1680
+2026-10-08,Pengolah Contoh Bersama,DEMO-006,Mandailing Natal,Sheet,RSS 3,23925,IDR,kg,produk,,transaksi_internal,1700
+2026-10-14,Pemasok Contoh Review,DEMO-007,Langkat,Bokar,,14000,IDR,kg,basah,120,dilaporkan,1000
+2026-10-14,Pemasok Contoh Review,DEMO-007,Langkat,Bokar,,belum tersedia,IDR,kg,basah,60,dilaporkan,1000

@@ -1,0 +1,105 @@
+{
+  "checked_at": "2026-10-16T02:01:57.446787+00:00",
+  "environment": "Playwright Chromium / Linux",
+  "windows_cmd_launcher_tested": false,
+  "checks": [
+    {
+      "name": "Actual entities move; workspace remains anchored",
+      "status": "passed",
+      "nodes": 160,
+      "moving_nodes": 159
+    },
+    {
+      "name": "All visible curves and hit areas follow their real node endpoints",
+      "status": "passed",
+      "edges": 224
+    },
+    {
+      "name": "Pause freezes geometry even through filter re-renders",
+      "status": "passed"
+    },
+    {
+      "name": "Pause preference survives page reload",
+      "status": "passed"
+    },
+    {
+      "name": "Resume restarts motion",
+      "status": "passed"
+    },
+    {
+      "name": "Hover holds the target while other entities continue moving",
+      "status": "passed"
+    },
+    {
+      "name": "Moving entity can be clicked and stays fixed while selected",
+      "status": "passed"
+    },
+    {
+      "name": "Keyboard focus freezes entities and Enter opens real entity details",
+      "status": "passed"
+    },
+    {
+      "name": "Zoom, pan and reset preserve connected geometry",
+      "status": "passed"
+    },
+    {
+      "name": "Fullscreen motion and Escape work with connected geometry",
+      "status": "passed"
+    },
+    {
+      "name": "Reduced-motion OS preference stops animation and restores safely",
+      "status": "passed"
+    },
+    {
+      "name": "Hidden-document visibility event stops and resumes motion",
+      "status": "passed"
+    },
+    {
+      "name": "Offscreen galaxy suspends animation until visible again",
+      "status": "passed"
+    },
+    {
+      "name": "Responsive controls and connected edges at 340/390/768/1024/1440px",
+      "status": "passed"
+    },
+    {
+      "name": "Simulation and empty private workspace stay separate and usable",
+      "status": "passed"
+    },
+    {
+      "name": "Zero JavaScript page errors",
+      "status": "passed"
+    }
+  ],
+  "page_errors": [],
+  "viewports": [
+    {
+      "width": 340,
+      "horizontal_overflow": false,
+      "edges_connected": true
+    },
+    {
+      "width": 390,
+      "horizontal_overflow": false,
+      "edges_connected": true
+    },
+    {
+      "width": 768,
+      "horizontal_overflow": false,
+      "edges_connected": true
+    },
+    {
+      "width": 1024,
+      "horizontal_overflow": false,
+      "edges_connected": true
+    },
+    {
+      "width": 1440,
+      "horizontal_overflow": false,
+      "edges_connected": true
+    }
+  ],
+  "browser_version": "156.0.8078.4",
+  "status": "passed",
+  "passed_checks": 16
+}
