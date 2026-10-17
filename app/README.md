@@ -4,7 +4,7 @@ Aplikasi karet alam dengan **raw-first intake** dan **koleksi eksternal otomatis
 
 ## Pengembangan saat ini
 
-Tidak membuat ZIP baru sampai pengguna meminta download. Jalankan/lihat perubahan melalui workspace dan preview; arsip rilis lama sudah dihapus atas permintaan pengguna.
+Paket source + frontend build dibuat setelah pengguna secara eksplisit meminta satu ZIP untuk GitHub/Cloudflare. Ekstrak lalu upload isi folder ke root repository; jangan hanya upload file ZIP. [Panduan upload/deploy](../README.md). Runtime/credential pengguna tidak disertakan. Tidak ada resource cloud yang dibuat otomatis.
 
 ### MVP pertama: intake → breakdown → klasifikasi → review
 
@@ -24,6 +24,12 @@ Di **Tambah data → Pemetaan pembelian**, header tidak harus pada baris pertama
 2. **Melacak dan mengumpulkan sumber eksternal secara otomatis.** Ada registry sumber, jadwal persisten, worker, akuisisi HTTP, deduplikasi, revisi record, backoff retry, lease pemulihan, bukti raw, dan status kegagalan. Empat sumber publik aktif secara default—bukan kartu aktivasi dekoratif.
 
 **“Semua data masuk” berarti seluruh byte dari setiap payload yang diterima dan diotorisasi dalam batas konfigurasi, bukan semua informasi dunia atau file berukuran tak terbatas.** Penolakan ukuran/kuota/izin dikembalikan secara eksplisit. Pencatatan raw tidak menjamin format telah dipahami, semua teks telah diekstrak, atau isi telah diverifikasi.
+
+## Cloudflare: frontend + API gateway, backend Python tetap persisten
+
+Konfigurasi deploy ada di root project (`../wrangler.jsonc`, `../package.json`), bukan folder frontend. Node 22 + custom build mengatasi error assets belum ditemukan. Worker mengirim request API secara same-origin ke origin HTTPS Python yang Anda tetapkan pada runtime binding `BACKEND_ORIGIN`; **bukan migrasi backend ke Python Workers/D1/R2**. API yang belum dikonfigurasi gagal eksplisit, bukan fallback HTML sukses.
+
+Contoh hosting backend persisten opsional: `../render.yaml` (berbayar hanya bila Anda menyetujui deploy di provider). Tidak ada resource cloud yang dibuat oleh file tersebut. Uji deployment mencakup upload/breakdown/review/raw/ownership secara lokal; akun cloud belum dideploy. [Panduan Cloudflare](../DEPLOY_CLOUDFLARE.md).
 
 ## Windows 11: klik dua kali
 

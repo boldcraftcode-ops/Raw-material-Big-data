@@ -8,7 +8,7 @@ Implementasi kedua requirement:
 
 ## Status pengembangan
 
-Pengembangan dilanjutkan langsung di workspace/preview. **Jangan membuat ZIP baru kecuali pengguna memintanya secara eksplisit.** Paket ZIP lama telah dihapus atas permintaan pengguna; petunjuk distribusi Windows di bawah tetap disimpan untuk pemakaian nanti.
+Paket source + build ini dibuat **atas permintaan eksplisit pengguna** untuk diunggah ke GitHub dan dideploy dengan Cloudflare. Ekstrak ZIP, lalu upload **isi folder** ke root repository—jangan hanya upload file ZIP. [Panduan cepat GitHub/Cloudflare](README.md). Data/runtime/credential pribadi tidak disertakan. ZIP berikutnya tetap hanya dibuat bila diminta.
 
 ## MVP pertama: breakdown dan klasifikasi intake
 
@@ -19,6 +19,12 @@ Buka kembali melalui **Data saya → Pusat data → Breakdown**. Format lain tet
 ## Asisten Excel lokal
 
 Pada **Tambah data → Pemetaan pembelian**, asisten berbasis aturan mendeteksi header/preambule dan header dua baris, menjelaskan saran kolom, memeriksa sampel tanpa publikasi, dan menyimpan pola hanya setelah Anda menyetujuinya. **Belum memakai model AI, tidak mengirim unggahan ke layanan AI eksternal.** [Panduan dan batasnya](app/docs/EXCEL_ASSISTANT.md).
+
+## Deployment Cloudflare — MVP lengkap
+
+Jika build menampilkan `Could not detect a directory containing static files`, gunakan konfigurasi root yang baru: `wrangler.jsonc`, `package.json`, lockfile, dan Node 22. Custom build menghasilkan `app/frontend/dist`; Worker meneruskan `/api` ke backend Python, bukan menjalankan Python di runtime Workers.
+
+**Backend HTTPS + storage persisten tetap diperlukan.** Atur `BACKEND_ORIGIN` sebagai runtime secret Worker. `render.yaml` adalah contoh backend berbayar opsional, bukan resource yang sudah dibuat. Tidak ada deploy cloud otomatis atau perpindahan data preview. [Langkah lengkap, biaya/batas, dan verifikasi](DEPLOY_CLOUDFLARE.md).
 
 ## Windows 11
 
@@ -39,7 +45,7 @@ bash run.sh
 # Buka http://localhost:8000
 ```
 
-Source workspace perlu satu kali build frontend. Paket distribusi nanti dapat menyertakan hasil build; jika hasil build sudah tersedia, `SKIP_FRONTEND_BUILD=1 bash prepare.sh` dapat melewati build sebelum `bash run.sh`. Tidak ada ZIP baru yang dibuat saat ini.
+Paket ini menyertakan frontend hasil build. Gunakan `SKIP_FRONTEND_BUILD=1 bash prepare.sh` untuk menyiapkan Python tanpa Node sebelum `bash run.sh`. Build/deploy Cloudflare tetap memakai Node 22+ pada CI dan akan membangun frontend ulang dari source.
 
 Default pengembangan: SQLite + filesystem privat. PostgreSQL dan private S3-compatible dapat dikonfigurasi; tidak otomatis memigrasi workspace lama atau membuat bucket/cloud hosting. Internet dibutuhkan oleh sumber eksternal. Server harus tetap berjalan untuk jadwal koleksi; menutup tab tidak menghentikannya.
 

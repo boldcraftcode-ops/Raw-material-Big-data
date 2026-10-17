@@ -93,3 +93,15 @@ MVP pertama kini **Intake → Breakdown → Klasifikasi → Review**, bukan kewa
 Verifikasi saat ini Linux/SQLite: **174 backend lulus, 1 skipped, 1 deprecation warning**, termasuk **43 tes baru**. **14 unit gerak + build TypeScript/Vite** lulus. **17 browser MVP**, **12 regresi Asisten Excel**, **16 regresi galaksi** lulus, 0 JavaScript errors; fixture sintetis, private QA dibersihkan. Bukan benchmark akurasi file pengguna. Native Windows/PostgreSQL nyata tidak diuji ulang.
 
 Rincian dan bukti: [INTAKE_BREAKDOWN.md](docs/INTAKE_BREAKDOWN.md). `start.bat`, runtime/raw lama, dan kolektor dipertahankan. **Tidak ada ZIP baru**.
+
+
+## Perbaikan deployment Cloudflare — 16 Oktober 2026
+
+Menanggapi error Wrangler `Could not detect a directory containing static files`: root package/lock + Node 22, custom build nested Vite, assets directory, Worker gateway `/api`, dan runtime secret `BACKEND_ORIGIN`. Backend Python/SQLite/raw/collectors tetap pada server dengan storage persisten; bukan dijalankan sebagai static assets.
+
+33 tes gateway, dry-run Wrangler (15 assets), 6 check integrasi lokal melalui Workerd→Python termasuk intake/review/raw/ownership, 174 tes backend + 14 unit frontend lulus; 1 skipped/1 deprecation warning backend. JSON Schema Render valid. Cloudflare production, Render account dan image Docker **belum dideploy/dieksekusi**. Tidak ada resource berbayar dibuat, runtime dipindah, atau ZIP baru. `render.yaml` adalah contoh berbayar opsional yang harus disetujui pengguna sebelum deployment. Lihat [DEPLOY_CLOUDFLARE.md](../DEPLOY_CLOUDFLARE.md).
+
+
+## Paket ZIP untuk GitHub/Cloudflare — permintaan eksplisit 16 Oktober 2026
+
+Paket source lengkap + frontend build dibuat setelah pengguna meminta satu ZIP untuk diunggah ke GitHub. Root README menjelaskan ekstrak ZIP, upload isi folder ke root repository, Node 22/custom build Wrangler, dan kebutuhan backend HTTPS dengan storage persisten. Tidak ada database/raw pribadi, credential, environment nyata, node_modules, venv atau cache dalam paket. `render.yaml` tetap contoh hosting berbayar opsional yang belum dibuat. Windows `start.bat` dipertahankan; Cloudflare/backend produksi tidak otomatis dideploy. CRC dan SHA-256 setiap file diverifikasi melalui manifest paket.

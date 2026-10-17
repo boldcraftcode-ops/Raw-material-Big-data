@@ -1,0 +1,21 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "rubber-intelligence",
+  "main": "deployment/worker.mjs",
+  "compatibility_date": "2026-10-16",
+  "build": {
+    "command": "npm run build",
+    "watch_dir": ["deployment/worker.mjs", "app/frontend/src", "app/frontend/public"]
+  },
+  "assets": {
+    "directory": "./app/frontend/dist",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api", "/api/*", "/blueprint"]
+  },
+  "observability": { "enabled": false }
+  // Required runtime binding: BACKEND_ORIGIN = the HTTPS origin of YOUR Python server.
+  // Set it as a Worker runtime secret (Dashboard / wrangler secret put BACKEND_ORIGIN).
+  // Do not put credentials or a localhost/preview URL in production source/config.
+  // No default origin: missing/invalid configuration returns an explicit API 503.
+}

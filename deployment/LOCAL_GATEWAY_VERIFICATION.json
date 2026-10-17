@@ -1,0 +1,15 @@
+{
+  "checked_at": "2026-10-16T10:24:34.745Z",
+  "target": "http://127.0.0.1:8787",
+  "synthetic_data_only": true,
+  "checks": [
+    "Frontend HTML and bundled JS/CSS are served",
+    "Real Python health and intake configuration are reachable through /api",
+    "Synthetic multipart upload is retained and the real background intake job completes",
+    "Breakdown/classification work and raw bytes/SHA-256 survive the Worker proxy",
+    "Version-bound review persists without publishing transactions or mutating raw",
+    "A different workspace token cannot read the private breakdown"
+  ],
+  "cleanup": true,
+  "status": "passed"
+}

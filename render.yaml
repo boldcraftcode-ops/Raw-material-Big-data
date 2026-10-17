@@ -1,0 +1,23 @@
+# OPTIONAL reference backend host. This provisions PAID hosting + a persistent disk
+# only if you explicitly submit/approve this Blueprint in your own Render account.
+# Preparing this file does NOT create a service, transfer runtime, or incur charges.
+# Cloudflare Worker + this Python service are separate deployments.
+services:
+  - type: web
+    name: rubber-intelligence-api
+    runtime: docker
+    dockerfilePath: ./app/Dockerfile
+    dockerContext: ./app
+    plan: 0.5c-512mb
+    region: singapore
+    numInstances: 1
+    healthCheckPath: /api/health
+    envVars:
+      - key: RUBBER_DATA_DIR
+        value: /data
+      - key: RUBBER_COLLECTORS_ENABLED
+        value: "1"
+    disk:
+      name: rubber-runtime
+      mountPath: /data
+      sizeGB: 5

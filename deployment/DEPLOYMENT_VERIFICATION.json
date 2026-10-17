@@ -1,0 +1,58 @@
+{
+  "checked_at": "2026-10-16T10:25:13.226198+00:00",
+  "mode": "local_configuration_validation_not_cloud_deployment",
+  "node": "22.23.3",
+  "wrangler": "4.151.0",
+  "wrangler_dry_run": {
+    "passed": true,
+    "assets_detected": 15,
+    "uploaded_to_cloud": false
+  },
+  "gateway_unit_tests": {
+    "passed": 33
+  },
+  "local_workerd_to_python": {
+    "checks_passed": 6,
+    "cleanup": true,
+    "asset_csp_headers": "passed",
+    "preview_host_accepted": true
+  },
+  "python_backend_regression": {
+    "passed": 174,
+    "skipped": 1,
+    "warnings": 1
+  },
+  "frontend": {
+    "motion_unit_tests_passed": 14,
+    "typescript_vite_build": "passed"
+  },
+  "render_blueprint": {
+    "official_json_schema": "passed",
+    "schema_url": "https://render.com/schema/render.yaml.json",
+    "docker_paths_checked": true,
+    "persistent_mount_checked": true,
+    "cloud_service_created": false,
+    "paid_resources_created": false,
+    "docker_image_executed": false
+  },
+  "existing_runtime": {
+    "sqlite_integrity": "ok",
+    "foreign_key_issues": 0,
+    "raw_assets_size_sha256_verified": 16,
+    "qa_documents_remaining": 0,
+    "preview_port_8000_health": "ok"
+  },
+  "cloudflare_production_deployed": false,
+  "backend_production_url_provided": false,
+  "release_zip_created": false,
+  "file_sha256": {
+    "wrangler.jsonc": "1b3762939649e6f5cb42cac20a6a91ebc2ab868fdf6f6509f58892d58a7ecd43",
+    "package.json": "e5aeb59f5b3f3106a877fc87018554ad1aa08dbe1a0611896c2746e62e6d1abc",
+    "package-lock.json": "23abfd5556f4fba557fcde52255aef5cad6c8b4f34040ed85081977b1f88b4c6",
+    ".node-version": "f14b4987904bcb5814e4459a057ed4d20f58a633152288a761214dcd28780b56",
+    "render.yaml": "1e25611c9d835155b56f502bfa77f73eafebea20ca2d05600ef7ca4d5bd7434f",
+    "deployment/worker.mjs": "9925c3c0e0f4dc3ab6c731e96a1eba83b6932b6ff7acb3e616a3cd2f65eb9f0b",
+    "deployment/verify-live.mjs": "14ebe49591bf8a226d647bb090f3a9ef945ef70cd0378f3946924adf6d555429",
+    "app/frontend/public/_headers": "ff27df54c75ca37c39179d14124f5fd7e529900e426cc71b4ea2ab59b08c8979"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "rubber-intelligence-deployment",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Cloudflare frontend/API gateway; the Python MVP runs separately with persistent storage.",
+  "engines": { "node": ">=22.0.0" },
+  "scripts": {
+    "build": "npm ci --prefix app/frontend --no-audit --no-fund && npm run build --prefix app/frontend",
+    "deploy": "wrangler deploy",
+    "deploy:check": "wrangler deploy --dry-run --outdir .cache/cloudflare-check",
+    "preview:cloudflare": "wrangler dev --local --ip 0.0.0.0 --port 8787",
+    "test:deployment": "node --test deployment/tests/*.test.mjs",
+    "verify:deployment": "node deployment/verify-live.mjs"
+  },
+  "devDependencies": { "wrangler": "4.151.0" }
+}
